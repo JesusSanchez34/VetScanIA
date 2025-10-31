@@ -1,0 +1,22 @@
+rules_version = '2'; service cloud.firestore { \1
+
+
+// JESÚS — HU-03: resultados de análisis de imagen
+match /analisisImagen/{docId} {
+  allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+  allow read: if request.auth != null;
+  allow update, delete: if false;
+}
+
+// SAÚL — HU-09: sensores e ingestión de telemetría
+match /sensors/{sensorId} {
+  allow read: if request.auth != null;
+  allow write: if request.auth != null; // endurecer en producción (por rol)
+  match /telemetry/{tId} {
+    allow create: if request.auth != null;
+    allow read: if request.auth != null;
+    allow update, delete: if false;
+  }
+}
+
+ } }
