@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificación</title>
+    <style>
+        :root {
+            --azul-petroleo: #1a5f73;
+            --verde-menta: #20c9a6;
+            --verde-menta-hover: #18b89a;
+            --blanco: #FFFFFF;
+            --gris-claro: #6b7280;
+            --naranja-calido: #e67e22;
+            --gris-oscuro: #1a202c;
+            --gris-medio: #4a5568;
+            --gris-bg: #f8fafc;
+            --gris-borde: #e2e8f0;
+            --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --sombra-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transicion: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radio-borde: 10px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: rgba(26, 31, 44, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .notification-modal {
+            background: var(--blanco);
+            border-radius: var(--radio-borde);
+            width: 350px;
+            overflow: hidden;
+            box-shadow: var(--sombra-hover);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: modalEntrance 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            transition: var(--transicion);
+            border: 1px solid var(--gris-borde);
+        }
+        
+        .notification-header {
+            padding: 1.2rem;
+            color: var(--blanco);
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+        }
+        
+        .success {
+            background: var(--verde-menta);
+        }
+        
+        .error {
+            background: var(--naranja-calido);
+        }
+        
+        .warning {
+            background: var(--azul-petroleo);
+        }
+        
+        .notification-body {
+            padding: 1.5rem;
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .notification-footer {
+            padding: 0.8rem;
+            background: var(--gris-bg);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--gris-claro);
+            border-top: 1px solid var(--gris-borde);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            margin-top: -4px;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--blanco);
+            animation: progressBar 3s linear forwards;
+        }
+        
+        @keyframes modalEntrance {
+            0% { transform: scale(0.9); opacity: 0; }
+            80% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes progressBar {
+            0% { width: 100%; }
+            100% { width: 0%; }
+        }
+
+        @keyframes fadeOut {
+            to { transform: scale(0.95); opacity: 0; }
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-modal">
+        <div class="notification-header" id="notification-header">
+            <svg class="icon" viewBox="0 0 24 24" id="notification-icon">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+            <span id="header-text">Éxito</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <div class="notification-body" id="notification-message">
+            Operación completada correctamente
+        </div>
+        <div class="notification-footer">
+            La notificación se cerrará automáticamente
+        </div>
+    </div>
+
+    <script>
+        // Configuración desde URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type') || 'success';
+        const message = urlParams.get('message') || 'Operación completada';
+        
+        // Elementos del DOM
+        const header = document.getElementById('notification-header');
+        const icon = document.getElementById('notification-icon');
+        const headerText = document.getElementById('header-text');
+        const messageEl = document.getElementById('notification-message');
+        
+        // Configurar según tipo
+        const config = {
+            success: {
+                color: 'success',
+                title: 'Éxito',
+                iconPath: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'
+            },
+            error: {
+                color: 'error',
+                title: 'Error',
+                iconPath: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'
+            },
+            warning: {
+                color: 'warning',
+                title: 'Advertencia',
+                iconPath: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'
+            }
+        };
+        
+        // Aplicar configuración
+        const { color, title, iconPath } = config[type];
+        header.classList.add(color);
+        headerText.textContent = title;
+        icon.setAttribute('d', iconPath);
+        messageEl.textContent = message;
+        
+        // Cierre automático con animación
+        setTimeout(() => {
+            document.querySelector('.notification-modal').style.animation = 'fadeOut 0.3s forwards';
+            setTimeout(() => window.close(), 300);
+        }, 3000);
+    </script>
+</body>
+</html>
