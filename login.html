@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - VetScainIa</title>
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Animaciones -->
+    <link rel="stylesheet" href="estilos/estilologin.css">
+    <!-- Auth -->
+    <script type="module" src="script/auth.js"></script>
+
+</head>
+
+<body class="auth-page">
+    <!-- Barra de navegación (simplificada para auth) -->
+    <header class="header auth-header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScainIa Logo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Index.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link active">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner para Auth -->
+    <section class="auth-hero">
+        <div class="container">
+            <div class="auth-hero-content">
+                <h1 class="animate__animated animate__fadeInDown">Bienvenido a VetScainIa</h1>
+                <p class="animate__animated animate__fadeInDown animate__delay-1s">Cuida a tu mascota con nuestro
+                    sistema de gestión veterinaria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenedor de Autenticación -->
+    <section class="auth-container">
+        <div class="container">
+            <div class="auth-box">
+                <!-- Selector Login/Registro -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="login-tab">Iniciar Sesión</button>
+                    <button class="auth-tab" id="register-tab">Registrarse</button>
+                </div>
+
+                <!-- Formulario de Login -->
+                <form class="auth-form active" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Correo Electrónico</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="login-password">Contraseña</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="show-password" aria-label="Mostrar contraseña">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <a href="recuperar-contrasena.html" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <div class="form-group remember-me">
+                        <input type="checkbox" id="remember-me">
+                        <label for="remember-me">Recordar mi sesión</label>
+                    </div>
+
+                    <button type="submit" class="btn primary auth-submit">Iniciar Sesión</button>
+
+                    <div class="social-auth">
+                        <p>O inicia sesión con:</p>
+                        <div class="social-buttons">
+                            <button type="button" class="social-btn google">
+                                <i class="fab fa-google"></i> Google
+                            </button>
+                            <button type="button" class="social-btn facebook">
+                                <i class="fab fa-facebook-f"></i> Facebook
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Formulario de Registro -->
+                <form class="auth-form" id="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="register-name">Nombre</label>
+                            <input type="text" id="register-name" placeholder="Juan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-lastname">Apellido</label>
+                            <input type="text" id="register-lastname" placeholder="Pérez" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-email">Correo Electrónico</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="register-email" placeholder="tucorreo@ejemplo.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-phone">Teléfono</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="register-phone" placeholder="+52 55 1234 5678" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password">Contraseña</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="register-password" placeholder="••••••••" required>
+                            <button type="button" class="show-password" aria-label="Mostrar contraseña">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength">
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                            <span class="strength-text">Seguridad: Baja</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirmar Contraseña</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="register-confirm-password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group terms">
+                        <input type="checkbox" id="accept-terms" required>
+                        <label for="accept-terms">Acepto los <a href="terminos-condiciones.html">Términos y
+                                Condiciones</a> y la <a href="politica-privacidad.html">Política de
+                                Privacidad</a></label>
+                    </div>
+
+                    <button type="submit" class="btn primary auth-submit">Registrarse</button>
+
+                    <div class="auth-switch">
+                        ¿Ya tienes una cuenta? <a href="#" id="switch-to-login">Inicia sesión aquí</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Agenda Citas</h3>
+                    <p>Programa visitas al veterinario cuando lo necesites</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3>Control de Vacunas</h3>
+                    <p>Nunca olvides una vacuna importante para tu mascota</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Historial Médico</h3>
+                    <p>Accede al historial completo de tu mascota en cualquier momento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Cambiar entre Login y Registro
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginTab = document.getElementById('login-tab');
+            const registerTab = document.getElementById('register-tab');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const switchToLogin = document.getElementById('switch-to-login');
+
+            // Cambiar a Registro
+            registerTab.addEventListener('click', function () {
+                loginTab.classList.remove('active');
+                registerTab.classList.add('active');
+                loginForm.classList.remove('active');
+                registerForm.classList.add('active');
+            });
+
+            // Cambiar a Login
+            loginTab.addEventListener('click', function () {
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+            });
+
+            // Cambiar desde el enlace en el formulario de registro
+            switchToLogin.addEventListener('click', function (e) {
+                e.preventDefault();
+                loginTab.click();
+            });
+
+            // Mostrar/ocultar contraseña
+            document.querySelectorAll('.show-password').forEach(button => {
+                button.addEventListener('click', function () {
+                    const input = this.previousElementSibling;
+                    const icon = this.querySelector('i');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+
+            // Validar fuerza de contraseña en tiempo real
+            const passwordInput = document.getElementById('register-password');
+            if (passwordInput) {
+                passwordInput.addEventListener('input', function () {
+                    const strengthBars = document.querySelectorAll('.strength-bar');
+                    const strengthText = document.querySelector('.strength-text');
+                    const password = this.value;
+                    let strength = 0;
+
+                    // Reset
+                    strengthBars.forEach(bar => bar.style.backgroundColor = '#e9ecef');
+
+                    // Validaciones
+                    if (password.length >= 8) strength += 1;
+                    if (/[A-Z]/.test(password)) strength += 1;
+                    if (/[0-9]/.test(password)) strength += 1;
+                    if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+                    // Actualizar UI
+                    if (strength > 0) {
+                        for (let i = 0; i < strength; i++) {
+                            strengthBars[i].style.backgroundColor =
+                                strength < 2 ? '#dc3545' :
+                                    strength < 4 ? '#fd7e14' : '#28a745';
+                        }
+
+                        strengthText.textContent =
+                            strength === 1 ? 'Seguridad: Débil' :
+                                strength === 2 ? 'Seguridad: Moderada' :
+                                    strength === 3 ? 'Seguridad: Fuerte' : 'Seguridad: Excelente';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

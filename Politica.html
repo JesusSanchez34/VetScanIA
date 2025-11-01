@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad - VetSacnIa Veterinaria Digital</title>
+    <!-- Favicon -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="estilos/estilospolitica.css">
+    <!-- script de sesion -->
+    <script type="module" src="script/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="Home.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIALogo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Home.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Agendar.html" class="nav-link">Agendar Cita</a></li>
+                    <li class="nav-item"><a href="Vacunas.html" class="nav-link">Control de Vacunas</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link login-btn">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="user-menu hidden" id="user-menu">
+                <div class="user-avatar" id="user-avatar">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="Configuracion.html">Configuración</a></li>
+                        <li><a href="#" id="logout-btn">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner para Política de Privacidad -->
+    <section class="hero privacy-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Política de Privacidad</h1>
+                <p>Transparencia en el manejo de tus datos personales y la información de tus mascotas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introducción -->
+    <section class="privacy-intro">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestro Compromiso con tu Privacidad</h2>
+                <p>En VetScanIA, valoramos y respetamos tu privacidad. Esta política explica cómo recopilamos, usamos y
+                    protegemos tu información.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido principal de política -->
+    <section class="privacy-content">
+        <div class="container">
+            <!-- Sección 1 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-database"></i> 1. Datos Recopilados</h2>
+                    <p>Información que recopilamos para brindarte nuestros servicios</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="privacy-card">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Información Personal</h3>
+                            <ul class="privacy-list">
+                                <li><i class="fas fa-check-circle"></i> Nombre y apellidos del usuario</li>
+                                <li><i class="fas fa-check-circle"></i> Correo electrónico</li>
+                                <li><i class="fas fa-check-circle"></i> Número de teléfono</li>
+                                <li><i class="fas fa-check-circle"></i> Dirección (para visitas a domicilio)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="privacy-card">
+                        <div class="card-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Información de Mascotas</h3>
+                            <ul class="privacy-list">
+                                <li><i class="fas fa-check-circle"></i> Nombre y especie</li>
+                                <li><i class="fas fa-check-circle"></i> Edad y raza</li>
+                                <li><i class="fas fa-check-circle"></i> Historial médico</li>
+                                <li><i class="fas fa-check-circle"></i> Registro de vacunas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="privacy-card">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3>Interacciones</h3>
+                            <ul class="privacy-list">
+                                <li><i class="fas fa-check-circle"></i> Historial de chat con el chatbot</li>
+                                <li><i class="fas fa-check-circle"></i> Información sobre citas agendadas</li>
+                                <li><i class="fas fa-check-circle"></i> Comentarios y reseñas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 2 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-laptop-medical"></i> 2. Uso de la Información</h2>
+                    <p>Cómo utilizamos tus datos para mejorar nuestros servicios</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="privacy-grid">
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>Asistencia con Chatbot</h3>
+                            <p>Analizar los síntomas descritos y generar recomendaciones personalizadas para el cuidado
+                                de tu mascota.</p>
+                        </div>
+
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <h3>Gestión de Citas</h3>
+                            <p>Programar y recordar tus citas veterinarias, enviando notificaciones oportunas.</p>
+                        </div>
+
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3>Seguridad</h3>
+                            <p>Verificar tu identidad y proteger tu cuenta contra accesos no autorizados.</p>
+                        </div>
+
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h3>Recordatorios</h3>
+                            <p>Enviar alertas sobre próximas vacunas o tratamientos necesarios.</p>
+                        </div>
+
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Mejora de Servicios</h3>
+                            <p>Analizar datos anónimos para mejorar nuestra plataforma y atención.</p>
+                        </div>
+
+                        <div class="usage-card">
+                            <div class="usage-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h3>Atención Médica</h3>
+                            <p>Proporcionar al veterinario información relevante para el diagnóstico y tratamiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-lock"></i> 3. Seguridad de la Información</h2>
+                    <p>Medidas que implementamos para proteger tus datos</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="security-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-key"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Cifrado de Contraseñas</h3>
+                                <p>Usamos bcrypt para almacenar tus credenciales de forma segura.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-virus"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Tokens de Seguridad</h3>
+                                <p>Implementamos protección CSRF contra ataques maliciosos.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Control de Acceso</h3>
+                                <p>Sistema de roles y permisos para restringir acceso a datos sensibles.</p>
+                            </div>
+                        </div>
+
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Copias de Seguridad</h3>
+                                <p>Respaldos periódicos para prevenir pérdida de información.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 4 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-exchange-alt"></i> 4. Compartición de Datos</h2>
+                    <p>Cómo y cuándo compartimos información</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="sharing-content">
+                        <div class="sharing-text">
+                            <p>En VetScanIA, <strong>no vendemos ni alquilamos</strong> tu información personal a
+                                terceros. Solo compartimos datos en los siguientes casos:</p>
+
+                            <div class="sharing-list">
+                                <div class="sharing-item">
+                                    <div class="sharing-badge">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <div class="sharing-detail">
+                                        <h3>Personal Veterinario</h3>
+                                        <p>El equipo médico autorizado puede acceder al historial de tu mascota para
+                                            brindar atención adecuada.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sharing-item">
+                                    <div class="sharing-badge">
+                                        <i class="fas fa-gavel"></i>
+                                    </div>
+                                    <div class="sharing-detail">
+                                        <h3>Requisitos Legales</h3>
+                                        <p>Cuando sea necesario por ley o en respuesta a procesos legales válidos.</p>
+                                    </div>
+                                </div>
+
+                                <div class="sharing-item">
+                                    <div class="sharing-badge">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <div class="sharing-detail">
+                                        <h3>Emergencias Médicas</h3>
+                                        <p>En situaciones de emergencia que pongan en riesgo la vida de tu mascota.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sharing-image">
+                            <img src="img/data-security.png" alt="Seguridad de datos">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 5 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-cog"></i> 5. Derechos del Usuario</h2>
+                    <p>Tus derechos sobre la información que compartes con nosotros</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="rights-grid">
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <h3>Derecho de Acceso</h3>
+                            <p>Puedes solicitar una copia de los datos personales que tenemos sobre ti y tu mascota.</p>
+                            <a href="#" class="right-link">Cómo solicitar <i class="fas fa-arrow-right"></i></a>
+                        </div>
+
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <h3>Derecho de Rectificación</h3>
+                            <p>Puedes actualizar o corregir información incorrecta o incompleta.</p>
+                            <a href="#" class="right-link">Actualizar datos <i class="fas fa-arrow-right"></i></a>
+                        </div>
+
+                        <div class="right-card">
+                            <div class="right-icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </div>
+                            <h3>Derecho de Eliminación</h3>
+                            <p>Puedes solicitar que eliminemos tus datos, excepto cuando debamos conservarlos por
+                                obligación legal.</p>
+                            <a href="#" class="right-link">Eliminar cuenta <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 6 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-cookie-bite"></i> 6. Cookies y Tecnologías Similares</h2>
+                    <p>Cómo usamos estas tecnologías para mejorar tu experiencia</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="cookies-content">
+                        <div class="cookies-image">
+                            <img src="img/cookies.png" alt="Tecnologías de seguimiento">
+                        </div>
+                        <div class="cookies-text">
+                            <h3>Uso de Cookies</h3>
+                            <p>Utilizamos cookies y tecnologías similares para:</p>
+                            <ul class="cookies-list">
+                                <li><i class="fas fa-check"></i> Mantener tu sesión activa</li>
+                                <li><i class="fas fa-check"></i> Recordar tus preferencias</li>
+                                <li><i class="fas fa-check"></i> Analizar el uso del sitio (datos agregados)</li>
+                            </ul>
+                            <div class="cookies-warning">
+                                <i class="fas fa-info-circle"></i>
+                                <p><strong>No usamos cookies</strong> para publicidad dirigida ni compartimos datos de
+                                    navegación con terceros con fines comerciales.</p>
+                            </div>
+                            <a href="Cookies.html" class="btn secondary">Gestionar preferencias de cookies</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 7 -->
+            <div class="privacy-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-sync-alt"></i> 7. Cambios a esta Política</h2>
+                    <p>Cómo te notificaremos sobre actualizaciones</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="changes-content">
+                        <div class="changes-timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">Julio 2025</div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Versión Actual</h3>
+                                    <p>Esta política entra en vigor el 1 de Julio de 2025.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-date">Junio 2025</div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Actualización de Seguridad</h3>
+                                    <p>Se agregaron detalles sobre medidas de protección de datos.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-date">Mayo 2025</div>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <h3>Versión Inicial</h3>
+                                    <p>Primera implementación de la política de privacidad.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="changes-notice">
+                            <h3>Notificación de Cambios</h3>
+                            <p>Te notificaremos sobre cambios importantes en esta política a través de:</p>
+                            <div class="notice-methods">
+                                <div class="method">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Correo electrónico</span>
+                                </div>
+                                <div class="method">
+                                    <i class="fas fa-bell"></i>
+                                    <span>Notificación en la plataforma</span>
+                                </div>
+                                <div class="method">
+                                    <i class="fas fa-home"></i>
+                                    <span>Publicación en nuestro sitio web</span>
+                                </div>
+                            </div>
+                            <p class="update-text">Te recomendamos revisar periódicamente esta página para estar al
+                                tanto de cualquier actualización.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contacto -->
+            <div class="privacy-contact">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="contact-content">
+                        <h3>¿Tienes preguntas sobre privacidad?</h3>
+                        <p>Nuestro equipo de protección de datos está disponible para resolver tus dudas.</p>
+                        <a href="Contacto.html" class="btn primary">Contactar a Privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="Servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="Servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="Servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="Servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="Servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot/IA -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <img src="img/assistant-icon.png" alt="Asistente Virtual">
+                <h3>Asistente Virtual VetSacnIa</h3>
+            </div>
+            <button class="close-chat" id="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot-message">
+                <p>¡Hola! Soy el asistente virtual de VetScanIA. ¿En qué puedo ayudarte hoy con tu mascota?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+            <button id="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-suggestions">
+            <p>Preguntas frecuentes:</p>
+            <div class="suggestion-buttons">
+                <button class="suggestion-btn">¿Cómo protegen mis datos?</button>
+                <button class="suggestion-btn">¿Puedo eliminar mi información?</button>
+                <button class="suggestion-btn">Política de cookies</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-button" id="chatbot-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>Asistente Virtual</span>
+    </button>
+
+    <!-- Scripts -->
+
+    <script src="script/buttoninvisible.js"></script>
+
+    <!-- Carga Firebase -->
+    <script type="module" src="script/firebase-init.js"></script>
+
+    <!-- Tu script del chatbot -->
+    <script type="module" src="script/chatbot.js"></script>
+
+    
+
+</body>
+
+</html>
