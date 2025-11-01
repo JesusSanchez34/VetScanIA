@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendar Cita - VetScanIA</title>
+    <!-- Favicon -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- estilos -->
+    <link rel="stylesheet" href="estilos/estilos.agendar.css">
+    <!-- script de sesion -->
+    <script type="module" src="script/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="Home.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Home.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Agendar.html" class="nav-link active">Agendar Cita</a></li>
+                    <li class="nav-item"><a href="Vacunas.html" class="nav-link">Control de Vacunas</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link login-btn">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="user-menu hidden" id="user-menu">
+                <div class="user-avatar" id="user-avatar">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="Configuracion.html">Configuración</a></li>
+                        <li><a href="#" id="logout-btn">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner para agendar cita -->
+    <section class="hero appointment-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Agenda una cita para tu mascota</h1>
+                <p>Programa una consulta con nuestros especialistas veterinarios</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de agendamiento -->
+    <section class="appointment-form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Información de la cita</h2>
+                <form id="appointmentForm">
+                    <div class="form-step active" id="step1">
+                        <h3>1. Selecciona el tipo de servicio</h3>
+                        <div class="form-group">
+                            <label for="serviceType">Tipo de servicio:</label>
+                            <select id="serviceType" name="serviceType" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="consulta">Consulta general</option>
+                                <option value="vacunacion">Vacunación</option>
+                                <option value="cirugia">Cirugía</option>
+                                <option value="urgencia">Urgencia</option>
+                                <option value="estetica">Estética canina</option>
+                                <option value="nutricion">Consulta nutricional</option>
+                                <option value="otros">Otros servicios</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="petType">Tipo de mascota:</label>
+                            <select id="petType" name="petType" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="perro">Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="ave">Ave</option>
+                                <option value="roedor">Roedor</option>
+                                <option value="reptil">Reptil</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn next-btn" onclick="nextStep(1, 2)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step2">
+                        <h3>2. Información de la mascota</h3>
+                        <div class="form-group">
+                            <label for="petName">Nombre de la mascota:</label>
+                            <input type="text" id="petName" name="petName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="petAge">Edad:</label>
+                            <input type="text" id="petAge" name="petAge" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="petBreed">Raza (opcional):</label>
+                            <input type="text" id="petBreed" name="petBreed">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="petSymptoms">Síntomas o motivo de consulta:</label>
+                            <textarea id="petSymptoms" name="petSymptoms" rows="4"></textarea>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn back-btn" onclick="prevStep(2, 1)">Anterior</button>
+                            <button type="button" class="btn next-btn" onclick="nextStep(2, 3)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step3">
+                        <h3>3. Selecciona fecha y hora</h3>
+                        <div class="form-group">
+                            <label for="appointmentDate">Fecha:</label>
+                            <input type="date" id="appointmentDate" name="appointmentDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="appointmentTime">Hora:</label>
+                            <select id="appointmentTime" name="appointmentTime" required>
+                                <option value="">Selecciona una hora</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">01:00 PM</option>
+                                <option value="14:00">02:00 PM</option>
+                                <option value="15:00">03:00 PM</option>
+                                <option value="16:00">04:00 PM</option>
+                                <option value="17:00">05:00 PM</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vetPreference">Preferencia de veterinario (opcional):</label>
+                            <select id="vetPreference" name="vetPreference">
+                                <option value="">Cualquier veterinario</option>
+                                <option value="dr-perez">Dr. Pérez</option>
+                                <option value="dra-gomez">Dra. Gómez</option>
+                                <option value="dr-rodriguez">Dr. Rodríguez</option>
+                                <option value="dra-martinez">Dra. Martínez</option>
+                            </select>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn back-btn" onclick="prevStep(3, 2)">Anterior</button>
+                            <button type="button" class="btn next-btn" onclick="nextStep(3, 4)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <div class="form-step" id="step4">
+                        <h3>4. Tus datos de contacto</h3>
+                        <div class="form-group">
+                            <label for="ownerName">Tu nombre completo:</label>
+                            <input type="text" id="ownerName" name="ownerName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerEmail">Correo electrónico:</label>
+                            <input type="email" id="ownerEmail" name="ownerEmail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ownerPhone">Teléfono:</label>
+                            <input type="tel" id="ownerPhone" name="ownerPhone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMethod">Preferencia de contacto:</label>
+                            <select id="contactMethod" name="contactMethod">
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="llamada">Llamada telefónica</option>
+                                <option value="email">Correo electrónico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="termsAgreement" name="termsAgreement" required>
+                            <label for="termsAgreement">Acepto los <a href="Terminos-Condiciones.html">términos y
+                                    condiciones</a> y la <a href="Politica.html">política de
+                                    privacidad</a></label>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn back-btn" onclick="prevStep(4, 3)">Anterior</button>
+                            <button type="submit" class="btn primary">Confirmar cita</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="appointment-info">
+                <h3>Información importante</h3>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Horario de atención</h4>
+                        <p>Lunes a Viernes: 9:00 AM - 8:00 PM<br>
+                            Sábados: 9:00 AM - 2:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Confirmación de cita</h4>
+                        <p>Recibirás un correo electrónico y mensaje de texto con los detalles de tu cita.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Política de cancelación</h4>
+                        <p>Por favor cancela con al menos 24 horas de anticipación si no podrás asistir.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4>Emergencias</h4>
+                        <p>Para emergencias fuera de horario, llama al: <strong>+52 55 1234 5678</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="Servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="Servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="Servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="Servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="Servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot/IA -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <img src="imagenes/Assistant.png" alt="Asistente Virtual">
+                <h3>Asistente Virtual VetScanIa</h3>
+            </div>
+            <button class="close-chat" id="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot-message">
+                <p>¡Hola! Soy el asistente virtual de VetScanIa. ¿En qué puedo ayudarte hoy con tu mascota?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+            <button id="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-suggestions">
+            <p>Preguntas frecuentes:</p>
+            <div class="suggestion-buttons">
+                <button class="suggestion-btn">¿Cómo agendar una cita?</button>
+                <button class="suggestion-btn">¿Qué documentos necesito?</button>
+                <button class="suggestion-btn">Costos de consulta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-button" id="chatbot-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>Asistente Virtual</span>
+    </button>
+
+    <!-- Scripts -->
+
+    <script src="script/buttoninvisible.js"></script>
+
+    <!-- Carga Firebase -->
+    <script type="module" src="script/firebase-init.js"></script>
+
+    <!-- Tu script del chatbot -->
+    <script type="module" src="script/chatbot.js"></script>
+
+
+</body>
+
+</html>
