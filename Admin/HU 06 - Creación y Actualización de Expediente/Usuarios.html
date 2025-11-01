@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - SafePet Admin</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilosadmin/estilosgenerales.css">
+    <link rel="stylesheet" href="../estilosadmin/estilosusuarios.css">
+</head>
+<body class="admin-users">
+    <!-- Barra lateral -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../imagenes/logoVetScanAi.png" alt="SafePet Admin" class="admin-logo">
+            <h2>SafePet <span>Admin</span></h2>
+        </div>
+        
+        <div class="admin-profile-card">
+            <div class="profile-image-container">
+                <img id="admin-profile-pic" src="../imagenes/Admin_icon.png" alt="Admin Profile">
+                <span class="online-status"></span>
+            </div>
+            <div class="profile-info">
+                <h3 id="admin-name">Cargando...</h3>
+                <p id="admin-email">admin@safepet.com</p>
+                <p class="admin-role"><i class="fas fa-shield-alt"></i> Administrador</p>
+            </div>
+        </div>
+        
+        <nav class="admin-nav">
+            <ul>
+                <li>
+                    <a href="Dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="Usuarios.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestión de Usuarios</span>
+                        <span class="menu-badge" id="new-users-badge">2</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mascotas.html">
+                        <i class="fas fa-paw"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Citas.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Inventario.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Inventario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Reportes.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href=Configuracio.html">
+                        <i class="fas fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>Versión 1.0.0</p>
+            <p id="last-login">Último acceso: Cargando...</p>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="admin-content">
+        <!-- Barra superior -->
+        <header class="admin-toolbar">
+            <div class="page-title">
+                <h1>Gestión de Usuarios</h1>
+                <p>Administra los usuarios del sistema y sus permisos</p>
+            </div>
+            
+            <div class="toolbar-actions">
+                <div class="search-container">
+                    <input type="text" id="users-search" placeholder="Buscar usuarios...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="notifications-dropdown">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">1</span>
+                    </button>
+                    <!-- Contenido de notificaciones -->
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="quick-action-btn" id="new-user-btn">
+                        <i class="fas fa-plus"></i> Nuevo Usuario
+                    </button>
+                    <button class="quick-action-btn secondary" id="export-users-btn">
+                        <i class="fas fa-file-export"></i> Exportar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido de Usuarios -->
+        <div class="users-container">
+            <!-- Filtros y controles -->
+            <div class="users-controls">
+                <div class="view-options">
+                    <button class="view-option active" data-view="all">
+                        <i class="fas fa-users"></i> Todos
+                    </button>
+                    <button class="view-option" data-view="clients">
+                        <i class="fas fa-user"></i> Clientes
+                    </button>
+                    <button class="view-option" data-view="staff">
+                        <i class="fas fa-user-md"></i> Personal
+                    </button>
+                    <button class="view-option" data-view="active">
+                        <i class="fas fa-check-circle"></i> Activos
+                    </button>
+                    <button class="view-option" data-view="inactive">
+                        <i class="fas fa-times-circle"></i> Inactivos
+                    </button>
+                </div>
+                
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="role-filter">Rol:</label>
+                        <select id="role-filter">
+                            <option value="all">Todos</option>
+                            <option value="client">Cliente</option>
+                            <option value="vet">Veterinario</option>
+                            <option value="assistant">Asistente</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-filter">Fecha de registro:</label>
+                        <select id="date-filter">
+                            <option value="all">Cualquier fecha</option>
+                            <option value="today">Hoy</option>
+                            <option value="week">Esta semana</option>
+                            <option value="month">Este mes</option>
+                            <option value="year">Este año</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <button class="clear-filters-btn">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Resumen de usuarios -->
+            <div class="users-summary">
+                <div class="summary-card">
+                    <div class="summary-icon primary">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Usuarios Totales</h3>
+                        <p class="summary-number" id="total-users">156</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon success">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Clientes</h3>
+                        <p class="summary-number" id="clients-count">132</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon info">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Personal</h3>
+                        <p class="summary-number" id="staff-count">24</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon warning">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Pendientes</h3>
+                        <p class="summary-number" id="pending-users">3</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabla de usuarios -->
+            <div class="users-table-container">
+                <div class="table-header">
+                    <h2>Listado de Usuarios</h2>
+                    <div class="table-actions">
+                        <button class="table-action-btn" id="refresh-users-btn">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                        <button class="table-action-btn" id="bulk-actions-btn">
+                            <i class="fas fa-tasks"></i> Acciones en lote
+                        </button>
+                    </div>
+                </div>
+                
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-cell">
+                                <input type="checkbox" id="select-all-users">
+                            </th>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Teléfono</th>
+                            <th>Rol</th>
+                            <th>Mascotas</th>
+                            <th>Estado</th>
+                            <th>Último acceso</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-list">
+                        <!-- Datos dinámicos de Firebase irán aquí -->
+                        <tr>
+                            <td class="checkbox-cell">
+                                <input type="checkbox" class="user-checkbox">
+                            </td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="user-avatar">
+                                        <img src="../img/user1.jpg" alt="Juan Pérez">
+                                    </div>
+                                    <span>juanperez</span>
+                                </div>
+                            </td>
+                            <td>Juan Pérez</td>
+                            <td>juan@example.com</td>
+                            <td>555-123-4567</td>
+                            <td><span class="role-badge client">Cliente</span></td>
+                            <td>2</td>
+                            <td><span class="status-badge active">Activo</span></td>
+                            <td>Hoy, 10:30 AM</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view" title="Ver perfil">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn message" title="Enviar mensaje">
+                                        <i class="fas fa-envelope"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Más filas... -->
+                    </tbody>
+                </table>
+                
+                <div class="table-footer">
+                    <div class="bulk-actions-panel hidden" id="bulk-actions-panel">
+                        <div class="bulk-actions-content">
+                            <span id="selected-count">0 usuarios seleccionados</span>
+                            <select id="bulk-action-select">
+                                <option value="">Seleccionar acción...</option>
+                                <option value="activate">Activar usuarios</option>
+                                <option value="deactivate">Desactivar usuarios</option>
+                                <option value="send-email">Enviar correo</option>
+                                <option value="change-role">Cambiar rol</option>
+                                <option value="delete">Eliminar usuarios</option>
+                            </select>
+                            <button class="apply-bulk-action-btn" disabled>Aplicar</button>
+                            <button class="cancel-bulk-action-btn">Cancelar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info">Página 1 de 8</span>
+                        <button class="pagination-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Nuevo/Editar Usuario -->
+    <div class="modal hidden" id="user-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 id="user-modal-title">Nuevo Usuario</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="user-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="user-role">Tipo de Usuario*</label>
+                            <select id="user-role" required>
+                                <option value="">Seleccionar tipo...</option>
+                                <option value="client">Cliente</option>
+                                <option value="vet">Veterinario</option>
+                                <option value="assistant">Asistente</option>
+                                <option value="admin">Administrador</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">Nombre(s)*</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="last-name">Apellido(s)*</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="user-email">Correo Electrónico*</label>
+                            <input type="email" id="user-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="user-phone">Teléfono</label>
+                            <input type="tel" id="user-phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="user-address">Dirección</label>
+                            <input type="text" id="user-address">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="user-rfc">RFC (para personal)</label>
+                            <input type="text" id="user-rfc">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row password-fields" id="password-fields">
+                        <div class="form-group">
+                            <label for="user-password">Contraseña*</label>
+                            <input type="password" id="user-password" autocomplete="new-password">
+                            <div class="password-strength">
+                                <span class="strength-bar"></span>
+                                <span class="strength-text">Seguridad: <span id="password-strength-text">Débil</span></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirmar Contraseña*</label>
+                            <input type="password" id="confirm-password" autocomplete="new-password">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-notes">Notas/Comentarios</label>
+                        <textarea id="user-notes" rows="2"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-status">Estado</label>
+                        <div class="status-options">
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="active" checked>
+                                <span class="radio-label active">Activo</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="inactive">
+                                <span class="radio-label inactive">Inactivo</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="pending">
+                                <span class="radio-label pending">Pendiente</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-image">Foto de Perfil</label>
+                        <input type="file" id="user-image" accept="image/*">
+                        <div class="image-preview hidden" id="user-image-preview">
+                            <img id="user-preview-image" src="#" alt="Vista previa del usuario">
+                            <button type="button" id="remove-user-image-btn">
+                                <i class="fas fa-times"></i> Eliminar foto
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn secondary close-modal-btn">Cancelar</button>
+                <button class="btn primary" id="save-user-btn">Guardar Usuario</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Ver Perfil Completo -->
+    <div class="modal hidden" id="profile-modal">
+        <div class="modal-content xlarge">
+            <div class="modal-header">
+                <h2 id="profile-modal-title">Perfil de Usuario</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="profile-container">
+                    <div class="profile-header">
+                        <div class="profile-image-large">
+                            <img src="../img/user1.jpg" alt="Juan Pérez" id="profile-large-image">
+                        </div>
+                        <div class="profile-info">
+                            <h1 id="profile-name">Juan Pérez</h1>
+                            <p class="profile-role" id="profile-role"><span class="role-badge client">Cliente</span></p>
+                            <p class="profile-email" id="profile-email"><i class="fas fa-envelope"></i> juan@example.com</p>
+                            <p class="profile-phone" id="profile-phone"><i class="fas fa-phone"></i> 555-123-4567</p>
+                            <p class="profile-status" id="profile-status"><i class="fas fa-circle"></i> <span>Activo</span></p>
+                            <p class="profile-joined" id="profile-joined"><i class="fas fa-calendar-alt"></i> Miembro desde: 15/01/2022</p>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-tabs">
+                        <button class="profile-tab active" data-tab="info">
+                            <i class="fas fa-info-circle"></i> Información
+                        </button>
+                        <button class="profile-tab" data-tab="pets">
+                            <i class="fas fa-paw"></i> Mascotas <span class="tab-badge" id="pets-count-badge">2</span>
+                        </button>
+                        <button class="profile-tab" data-tab="appointments">
+                            <i class="fas fa-calendar-check"></i> Citas <span class="tab-badge" id="appointments-count-badge">5</span>
+                        </button>
+                        <button class="profile-tab" data-tab="activity">
+                            <i class="fas fa-chart-line"></i> Actividad
+                        </button>
+                        <button class="profile-tab" data-tab="security">
+                            <i class="fas fa-shield-alt"></i> Seguridad
+                        </button>
+                    </div>
+                    
+                    <div class="profile-tab-content active" id="info-tab">
+                        <div class="profile-details">
+                            <div class="detail-section">
+                                <h3>Información Personal</h3>
+                                <div class="detail-row">
+                                    <span class="detail-label">Nombre completo:</span>
+                                    <span class="detail-value" id="profile-fullname">Juan Carlos Pérez García</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Fecha de nacimiento:</span>
+                                    <span class="detail-value" id="profile-birthdate">15/03/1985</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Dirección:</span>
+                                    <span class="detail-value" id="profile-address">Calle Flores #123, Col. Centro, CDMX</span>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h3>Datos de Contacto</h3>
+                                <div class="detail-row">
+                                    <span class="detail-label">Teléfono alternativo:</span>
+                                    <span class="detail-value" id="profile-phone2">555-765-4321</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Contacto de emergencia:</span>
+                                    <span class="detail-value" id="profile-emergency">María Sánchez (esposa) - 555-987-6543</span>
+                                </div>
+                            </div>
+                            
+                            <div class="detail-section">
+                                <h3>Información Adicional</h3>
+                                <div class="detail-row">
+                                    <span class="detail-label">Notas:</span>
+                                    <span class="detail-value" id="profile-notes">Cliente preferente. Siempre puntual en sus citas.</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Último acceso:</span>
+                                    <span class="detail-value" id="profile-lastlogin">Hoy, 10:30 AM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Otras pestañas del perfil... -->
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn secondary close-modal-btn">Cerrar</button>
+                <button class="btn primary" id="edit-profile-btn">
+                    <i class="fas fa-edit"></i> Editar Perfil
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    
+    <!-- Configuración Firebase -->
+    <script src="../js/firebase-config.js"></script>
+    
+    <!-- Scripts del Admin -->
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-users.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Abrir modal de nuevo usuario
+            const newUserBtn = document.getElementById('new-user-btn');
+            const userModal = document.getElementById('user-modal');
+            const closeModalBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
+            
+            newUserBtn.addEventListener('click', function() {
+                document.getElementById('user-modal-title').textContent = 'Nuevo Usuario';
+                userModal.classList.remove('hidden');
+            });
+            
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    userModal.classList.add('hidden');
+                    document.getElementById('profile-modal').classList.add('hidden');
+                });
+            });
+            
+            // Vista previa de imagen de usuario
+            const userImageInput = document.getElementById('user-image');
+            const userImagePreview = document.getElementById('user-image-preview');
+            const userPreviewImage = document.getElementById('user-preview-image');
+            const removeUserImageBtn = document.getElementById('remove-user-image-btn');
+            
+            userImageInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        userPreviewImage.src = event.target.result;
+                        userImagePreview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            
+            removeUserImageBtn.addEventListener('click', function() {
+                userImageInput.value = '';
+                userPreviewImage.src = '#';
+                userImagePreview.classList.add('hidden');
+            });
+            
+            // Mostrar/ocultar campos de contraseña según tipo de usuario
+            const userRoleSelect = document.getElementById('user-role');
+            if (userRoleSelect) {
+                userRoleSelect.addEventListener('change', function() {
+                    const passwordFields = document.getElementById('password-fields');
+                    if (this.value === 'client') {
+                        passwordFields.style.display = 'none';
+                    } else {
+                        passwordFields.style.display = 'flex';
+                    }
+                });
+            }
+            
+            // Simular clic en botón de ver perfil
+            document.querySelectorAll('.action-btn.view').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userName = this.closest('tr').querySelector('.user-info span').textContent;
+                    document.getElementById('profile-modal-title').textContent = `Perfil de ${userName}`;
+                    document.getElementById('profile-modal').classList.remove('hidden');
+                });
+            });
+            
+            // Tabs del perfil de usuario
+            const profileTabs = document.querySelectorAll('.profile-tab');
+            profileTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    profileTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const tabId = this.dataset.tab + '-tab';
+                    document.querySelectorAll('.profile-tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Acciones en lote
+            const bulkActionsBtn = document.getElementById('bulk-actions-btn');
+            const bulkActionsPanel = document.getElementById('bulk-actions-panel');
+            
+            if (bulkActionsBtn && bulkActionsPanel) {
+                bulkActionsBtn.addEventListener('click', function() {
+                    bulkActionsPanel.classList.toggle('hidden');
+                });
+                
+                document.querySelector('.cancel-bulk-action-btn').addEventListener('click', function() {
+                    bulkActionsPanel.classList.add('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

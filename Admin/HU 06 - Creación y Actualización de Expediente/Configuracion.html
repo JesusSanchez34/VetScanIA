@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - SafePet Admin</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilosadmin/estilosgenerales.css">
+    <link rel="stylesheet" href="../estilosadmin/estilosconfiguracion.css">
+</head>
+<body class="admin-settings">
+    <!-- Barra lateral -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../imagenes/logoVetScanAi.png" alt="SafePet Admin" class="admin-logo">
+            <h2>VetScanIa <span>Admin</span></h2>
+        </div>
+        
+        <div class="admin-profile-card">
+            <div class="profile-image-container">
+                <img id="admin-profile-pic" src="../imagenes/Admin_icon.png" alt="Admin Profile">
+                <span class="online-status"></span>
+            </div>
+            <div class="profile-info">
+                <h3 id="admin-name">Cargando...</h3>
+                <p id="admin-email">admin@safepet.com</p>
+                <p class="admin-role"><i class="fas fa-shield-alt"></i> Administrador</p>
+            </div>
+        </div>
+        
+        <nav class="admin-nav">
+            <ul>
+                <li>
+                    <a href="Dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Usuarios.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mascotas.html">
+                        <i class="fas fa-paw"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Citas.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Inventario.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Inventario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Reportes.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="Configuracion.html">
+                        <i class="fas fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>Versión 1.0.0</p>
+            <p id="last-login">Último acceso: Cargando...</p>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="admin-content">
+        <!-- Barra superior -->
+        <header class="admin-toolbar">
+            <div class="page-title">
+                <h1>Configuración del Sistema</h1>
+                <p>Personaliza y administra la configuración de SafePet</p>
+            </div>
+            
+            <div class="toolbar-actions">
+                <button class="quick-action-btn" id="save-settings-btn">
+                    <i class="fas fa-save"></i> Guardar Cambios
+                </button>
+            </div>
+        </header>
+
+        <!-- Contenido de Configuración -->
+        <div class="settings-container">
+            <!-- Menú de configuración -->
+            <div class="settings-menu">
+                <div class="settings-menu-header">
+                    <h2>Opciones</h2>
+                </div>
+                <ul class="settings-menu-list">
+                    <li class="active" data-section="general">
+                        <i class="fas fa-sliders-h"></i> General
+                    </li>
+                    <li data-section="clinic">
+                        <i class="fas fa-clinic-medical"></i> Clínica
+                    </li>
+                    <li data-section="notifications">
+                        <i class="fas fa-bell"></i> Notificaciones
+                    </li>
+                    <li data-section="security">
+                        <i class="fas fa-shield-alt"></i> Seguridad
+                    </li>
+                    <li data-section="backup">
+                        <i class="fas fa-database"></i> Backup
+                    </li>
+                    <li data-section="integrations">
+                        <i class="fas fa-plug"></i> Integraciones
+                    </li>
+                    <li data-section="appearance">
+                        <i class="fas fa-palette"></i> Apariencia
+                    </li>
+                    <li data-section="advanced">
+                        <i class="fas fa-cogs"></i> Avanzado
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Paneles de configuración -->
+            <div class="settings-panels">
+                <!-- Panel General -->
+                <div class="settings-panel active" id="general-panel">
+                    <h2><i class="fas fa-sliders-h"></i> Configuración General</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Información Básica</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="system-name">Nombre del Sistema*</label>
+                                <input type="text" id="system-name" value="SafePet Veterinaria">
+                            </div>
+                            <div class="form-group">
+                                <label for="timezone">Zona Horaria*</label>
+                                <select id="timezone">
+                                    <option value="-6">(GMT-06:00) Centro de México</option>
+                                    <option value="-5">(GMT-05:00) Este de México</option>
+                                    <!-- Más zonas horarias -->
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date-format">Formato de Fecha*</label>
+                                <select id="date-format">
+                                    <option value="dd/mm/yyyy">DD/MM/AAAA</option>
+                                    <option value="mm/dd/yyyy">MM/DD/AAAA</option>
+                                    <option value="yyyy-mm-dd">AAAA-MM-DD</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="time-format">Formato de Hora*</label>
+                                <select id="time-format">
+                                    <option value="12">12 horas (AM/PM)</option>
+                                    <option value="24">24 horas</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Configuración de Idioma</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="language">Idioma Principal*</label>
+                                <select id="language">
+                                    <option value="es">Español</option>
+                                    <option value="en">Inglés</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Opciones de Sistema</h3>
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="maintenance-mode">
+                                <label for="maintenance-mode">Modo Mantenimiento</label>
+                                <p class="setting-description">Activar para realizar actualizaciones sin interrupciones</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="auto-updates" checked>
+                                <label for="auto-updates">Actualizaciones Automáticas</label>
+                                <p class="setting-description">Descargar e instalar actualizaciones de seguridad automáticamente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panel de Clínica -->
+                <div class="settings-panel" id="clinic-panel">
+                    <h2><i class="fas fa-clinic-medical"></i> Configuración de la Clínica</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Información de la Clínica</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clinic-name">Nombre de la Clínica*</label>
+                                <input type="text" id="clinic-name" value="Veterinaria SafePet">
+                            </div>
+                            <div class="form-group">
+                                <label for="clinic-logo">Logo</label>
+                                <input type="file" id="clinic-logo" accept="image/*">
+                                <div class="image-preview" id="clinic-logo-preview">
+                                    <img src="../img/logo.png" alt="Logo de la clínica">
+                                    <button type="button" id="remove-clinic-logo-btn">
+                                        <i class="fas fa-times"></i> Eliminar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clinic-address">Dirección*</label>
+                                <input type="text" id="clinic-address" value="Av. Veterinaria 123, Col. Centro">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clinic-phone">Teléfono*</label>
+                                <input type="tel" id="clinic-phone" value="+52 55 1234 5678">
+                            </div>
+                            <div class="form-group">
+                                <label for="clinic-email">Correo Electrónico*</label>
+                                <input type="email" id="clinic-email" value="contacto@safepet.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="clinic-rfc">RFC</label>
+                                <input type="text" id="clinic-rfc" placeholder="Ingrese el RFC de la clínica">
+                            </div>
+                            <div class="form-group">
+                                <label for="clinic-website">Sitio Web</label>
+                                <input type="url" id="clinic-website" placeholder="https://safepet.com">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Horario de Atención</h3>
+                        <div class="business-hours">
+                            <div class="business-day">
+                                <span class="day-name">Lunes</span>
+                                <div class="day-hours">
+                                    <input type="time" value="09:00"> a <input type="time" value="18:00">
+                                </div>
+                                <div class="day-checkbox">
+                                    <input type="checkbox" id="monday-closed">
+                                    <label for="monday-closed">Cerrado</label>
+                                </div>
+                            </div>
+                            <!-- Más días de la semana... -->
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Configuración de Citas</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointment-duration">Duración Predeterminada de Citas (minutos)*</label>
+                                <input type="number" id="appointment-duration" min="10" max="120" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="max-daily-appointments">Máximo de Citas Diarias*</label>
+                                <input type="number" id="max-daily-appointments" min="1" max="50" value="20">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cancelation-policy">Política de Cancelación (horas)*</label>
+                                <input type="number" id="cancelation-policy" min="1" max="48" value="24">
+                                <p class="setting-description">Tiempo mínimo requerido para cancelar sin penalización</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panel de Notificaciones -->
+                <div class="settings-panel" id="notifications-panel">
+                    <h2><i class="fas fa-bell"></i> Configuración de Notificaciones</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Notificaciones por Correo Electrónico</h3>
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="email-notifications" checked>
+                                <label for="email-notifications">Activar Notificaciones por Email</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email-from">Email de Envío*</label>
+                                <input type="email" id="email-from" value="notificaciones@safepet.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="email-reply">Email para Respuestas</label>
+                                <input type="email" id="email-reply" value="contacto@safepet.com">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email-template">Plantilla de Email</label>
+                                <select id="email-template">
+                                    <option value="default">Predeterminada</option>
+                                    <option value="modern">Moderna</option>
+                                    <option value="simple">Simple</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Recordatorios de Citas</h3>
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="reminder-active" checked>
+                                <label for="reminder-active">Activar Recordatorios</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reminder-time">Horas de Anticipación*</label>
+                                <input type="number" id="reminder-time" min="1" max="72" value="24">
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-method">Método de Recordatorio*</label>
+                                <select id="reminder-method">
+                                    <option value="email">Solo Email</option>
+                                    <option value="sms">Solo SMS</option>
+                                    <option value="both">Email y SMS</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Notificaciones Internas</h3>
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-new-appointment" checked>
+                                <label for="notify-new-appointment">Nuevas Citas</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-canceled-appointment" checked>
+                                <label for="notify-canceled-appointment">Citas Canceladas</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-low-stock" checked>
+                                <label for="notify-low-stock">Stock Bajo</label>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="notify-system-alerts" checked>
+                                <label for="notify-system-alerts">Alertas del Sistema</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Panel de Seguridad -->
+                <div class="settings-panel" id="security-panel">
+                    <h2><i class="fas fa-shield-alt"></i> Configuración de Seguridad</h2>
+                    
+                    <div class="settings-group">
+                        <h3>Autenticación</h3>
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="two-factor-auth">
+                                <label for="two-factor-auth">Autenticación en Dos Pasos</label>
+                                <p class="setting-description">Requerir verificación adicional para accesos sensibles</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="session-timeout">Tiempo de Inactividad (minutos)*</label>
+                                <input type="number" id="session-timeout" min="5" max="240" value="30">
+                                <p class="setting-description">Tiempo antes de cerrar sesión por inactividad</p>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password-policy">Política de Contraseñas*</label>
+                                <select id="password-policy">
+                                    <option value="low">Básica (6 caracteres mínimo)</option>
+                                    <option value="medium" selected>Media (8 caracteres, mayúsculas y números)</option>
+                                    <option value="high">Alta (12 caracteres, complejidad requerida)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Registro de Actividades</h3>
+                        <div class="form-row">
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="activity-logging" checked>
+                                <label for="activity-logging">Activar Registro de Actividades</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="log-retention">Retención de Registros (días)*</label>
+                                <input type="number" id="log-retention" min="7" max="365" value="90">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-group">
+                        <h3>Restricciones de Acceso</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="allowed-ips">IPs Permitidas (opcional)</label>
+                                <textarea id="allowed-ips" rows="3" placeholder="Ejemplo: 192.168.1.1, 201.120.34.5"></textarea>
+                                <p class="setting-description">Lista de IPs permitidas para acceso administrativo (separadas por comas)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Más paneles de configuración... -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal hidden" id="confirm-modal">
+        <div class="modal-content small">
+            <div class="modal-header">
+                <h2 id="confirm-modal-title">Confirmar Cambios</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <p id="confirm-modal-message">¿Estás seguro de que deseas guardar los cambios en la configuración?</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn secondary close-modal-btn">Cancelar</button>
+                <button class="btn primary" id="confirm-save-btn">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- Configuración Firebase -->
+    <script src="../js/firebase-config.js"></script>
+    
+    <!-- Scripts del Admin -->
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-settings.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación entre paneles de configuración
+            const settingsMenuItems = document.querySelectorAll('.settings-menu-list li');
+            settingsMenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    settingsMenuItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const section = this.dataset.section;
+                    document.querySelectorAll('.settings-panel').forEach(panel => {
+                        panel.classList.remove('active');
+                    });
+                    document.getElementById(`${section}-panel`).classList.add('active');
+                });
+            });
+            
+            // Guardar configuración
+            const saveSettingsBtn = document.getElementById('save-settings-btn');
+            const confirmModal = document.getElementById('confirm-modal');
+            const closeModalBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
+            
+            saveSettingsBtn.addEventListener('click', function() {
+                confirmModal.classList.remove('hidden');
+            });
+            
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    confirmModal.classList.add('hidden');
+                });
+            });
+            
+            // Eliminar logo de la clínica
+            const removeClinicLogoBtn = document.getElementById('remove-clinic-logo-btn');
+            if (removeClinicLogoBtn) {
+                removeClinicLogoBtn.addEventListener('click', function() {
+                    document.getElementById('clinic-logo').value = '';
+                    document.querySelector('#clinic-logo-preview img').src = '../img/default-clinic.png';
+                });
+            }
+            
+            // Cambiar política de contraseñas
+            const passwordPolicySelect = document.getElementById('password-policy');
+            if (passwordPolicySelect) {
+                passwordPolicySelect.addEventListener('change', function() {
+                    let message = '';
+                    switch(this.value) {
+                        case 'low':
+                            message = 'Los usuarios podrán usar contraseñas simples (mínimo 6 caracteres).';
+                            break;
+                        case 'medium':
+                            message = 'Los usuarios deberán usar contraseñas con al menos 8 caracteres, incluyendo mayúsculas y números.';
+                            break;
+                        case 'high':
+                            message = 'Los usuarios deberán usar contraseñas complejas con 12 caracteres, incluyendo mayúsculas, números y caracteres especiales.';
+                            break;
+                    }
+                    // Aquí podrías mostrar un tooltip o mensaje con la descripción
+                });
+            }
+        });
+    </script>
+</body>
+</html>

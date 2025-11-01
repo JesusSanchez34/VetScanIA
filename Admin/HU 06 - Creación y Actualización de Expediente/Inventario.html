@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Inventario - SafePet Admin</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilosadmin/estilosgenerales.css">
+    <link rel="stylesheet" href="../estilosadmin/estilosinventario.css">
+
+
+</head>
+
+<body class="admin-inventory">
+    <!-- Barra lateral -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../imagenes/logoVetScanAi.png" alt="SafePet Admin" class="admin-logo">
+            <h2>VetScanIa <span>Admin</span></h2>
+        </div>
+
+        <div class="admin-profile-card">
+            <div class="profile-image-container">
+                <img id="admin-profile-pic" src="../imagenes/Admin_icon.png" alt="Admin Profile">
+                <span class="online-status"></span>
+            </div>
+            <div class="profile-info">
+                <h3 id="admin-name">Cargando...</h3>
+                <p id="admin-email">admin@safepet.com</p>
+                <p class="admin-role"><i class="fas fa-shield-alt"></i> Administrador</p>
+            </div>
+        </div>
+
+        <nav class="admin-nav">
+            <ul>
+                <a href="Dashboard.html">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+                </li>
+                <li>
+                    <a href="Usuarios.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mascotas.html">
+                        <i class="fas fa-paw"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="citas.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span>
+                        <span class="menu-badge" id="pending-appointments">5</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="Inventario.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Inventario</span>
+                        <span class="menu-badge warning" id="low-stock-items">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Reportes.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion.html">
+                        <i class="fas fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Versión 1.0.0</p>
+            <p id="last-login">Último acceso: Cargando...</p>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="admin-content">
+        <!-- Barra superior -->
+        <header class="admin-toolbar">
+            <div class="page-title">
+                <h1>Gestión de Inventario</h1>
+                <p>Control de medicamentos, suministros y productos</p>
+            </div>
+
+            <div class="toolbar-actions">
+                <div class="search-container">
+                    <input type="text" id="inventory-search" placeholder="Buscar en inventario...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+
+                <div class="notifications-dropdown">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </button>
+                    <!-- Contenido de notificaciones -->
+                </div>
+
+                <div class="quick-actions">
+                    <button class="quick-action-btn" id="new-item-btn">
+                        <i class="fas fa-plus"></i> Nuevo Producto
+                    </button>
+                    <button class="quick-action-btn secondary" id="import-inventory-btn">
+                        <i class="fas fa-file-import"></i> Importar
+                    </button>
+                    <button class="quick-action-btn danger" id="export-pdf-btn">
+                        <i class="fas fa-file-pdf"></i> Exportar PDF
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido de Inventario -->
+        <div class="inventory-container">
+            <!-- Filtros y controles -->
+            <div class="inventory-controls">
+                <div class="view-options">
+                    <button class="view-option active" data-view="all">
+                        <i class="fas fa-boxes"></i> Todos
+                    </button>
+                    <button class="view-option" data-view="medicines">
+                        <i class="fas fa-pills"></i> Medicamentos
+                    </button>
+                    <button class="view-option" data-view="supplies">
+                        <i class="fas fa-syringe"></i> Insumos
+                    </button>
+                    <button class="view-option" data-view="food">
+                        <i class="fas fa-bone"></i> Alimentos
+                    </button>
+                    <button class="view-option" data-view="low-stock">
+                        <i class="fas fa-exclamation-triangle"></i> Stock Bajo
+                    </button>
+                </div>
+
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoría:</label>
+                        <select id="category-filter">
+                            <option value="all">Todas</option>
+                            <option value="antibiotics">Antibióticos</option>
+                            <option value="vaccines">Vacunas</option>
+                            <option value="antiparasitics">Antiparasitarios</option>
+                            <option value="cleaners">Productos de limpieza</option>
+                            <option value="food">Alimentos</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="supplier-filter">Proveedor:</label>
+                        <select id="supplier-filter">
+                            <option value="all">Todos</option>
+                            <option value="supplier1">PetHealth</option>
+                            <option value="supplier2">VetSupply</option>
+                            <option value="supplier3">AnimalCare</option>
+                        </select>
+                    </div>
+
+                    <button class="clear-filters-btn">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Resumen de inventario -->
+            <div class="inventory-summary">
+                <div class="summary-card">
+                    <div class="summary-icon primary">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Productos Totales</h3>
+                        <p class="summary-number" id="total-items">147</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon warning">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Stock Bajo</h3>
+                        <p class="summary-number" id="low-stock-count">12</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon danger">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Agotados</h3>
+                        <p class="summary-number" id="out-of-stock-count">3</p>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon success">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Pedidos Pendientes</h3>
+                        <p class="summary-number" id="pending-orders">5</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de inventario -->
+            <div class="inventory-table-container">
+                <div class="table-header">
+                    <h2>Productos en Inventario</h2>
+                    <div class="table-actions">
+                        <button class="table-action-btn" id="refresh-inventory-btn">
+                            <i class="fas fa-sync-alt"></i> Actualizar
+                        </button>
+                        <button class="table-action-btn" id="export-csv-btn">
+                            <i class="fas fa-file-csv"></i> Exportar CSV
+                        </button>
+                    </div>
+                </div>
+
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-cell">
+                                <input type="checkbox" id="select-all-items">
+                            </th>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Código</th>
+                            <th>Stock</th>
+                            <th>Precio</th>
+                            <th>Proveedor</th>
+                            <th>Última Actualización</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-items">
+                        <!-- Datos dinámicos de Firebase irán aquí -->
+                        <tr class="low-stock">
+                            <td class="checkbox-cell">
+                                <input type="checkbox" class="item-checkbox">
+                            </td>
+                            <td>
+                                <div class="product-info">
+                                    <div class="product-image">
+                                        <img src="../img/product1.jpg" alt="Antibiótico">
+                                    </div>
+                                    <div class="product-details">
+                                        <h3>Amoxicilina 250mg</h3>
+                                        <p class="product-description">Antibiótico de amplio espectro</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Antibióticos</td>
+                            <td>MED-001</td>
+                            <td>
+                                <div class="stock-info">
+                                    <span class="stock-quantity">5</span>
+                                    <div class="stock-bar">
+                                        <div class="stock-level low" style="width: 15%"></div>
+                                    </div>
+                                    <span class="stock-alert"><i class="fas fa-exclamation-triangle"></i></span>
+                                </div>
+                            </td>
+                            <td>$120.00</td>
+                            <td>PetHealth</td>
+                            <td>14/06/2023</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn restock" title="Reabastecer">
+                                        <i class="fas fa-cubes"></i>
+                                    </button>
+                                    <button class="action-btn delete" title="Eliminar">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Más filas... -->
+                    </tbody>
+                </table>
+
+                <div class="table-footer">
+                    <div class="bulk-actions">
+                        <select id="bulk-action-select">
+                            <option value="">Acciones en lote...</option>
+                            <option value="restock">Reabastecer seleccionados</option>
+                            <option value="export">Exportar seleccionados</option>
+                            <option value="delete">Eliminar seleccionados</option>
+                        </select>
+                        <button class="apply-bulk-action-btn" disabled>Aplicar</button>
+                    </div>
+
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span class="page-info">Página 1 de 7</span>
+                        <button class="pagination-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Nuevo/Editar Producto -->
+    <div class="modal hidden" id="inventory-modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2 id="inventory-modal-title">Nuevo Producto</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="inventory-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-name">Nombre del Producto*</label>
+                            <input type="text" id="product-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-code">Código*</label>
+                            <input type="text" id="product-code" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-category">Categoría*</label>
+                            <select id="product-category" required>
+                                <option value="">Seleccionar categoría...</option>
+                                <option value="antibiotics">Antibióticos</option>
+                                <option value="vaccines">Vacunas</option>
+                                <option value="antiparasitics">Antiparasitarios</option>
+                                <option value="painkillers">Analgésicos</option>
+                                <option value="cleaners">Productos de limpieza</option>
+                                <option value="food">Alimentos</option>
+                                <option value="other">Otros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-type">Tipo</label>
+                            <input type="text" id="product-type">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-supplier">Proveedor*</label>
+                            <select id="product-supplier" required>
+                                <option value="">Seleccionar proveedor...</option>
+                                <option value="supplier1">PetHealth</option>
+                                <option value="supplier2">VetSupply</option>
+                                <option value="supplier3">AnimalCare</option>
+                                <option value="other">Otro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-supplier-code">Código del Proveedor</label>
+                            <input type="text" id="product-supplier-code">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-stock">Stock Actual*</label>
+                            <input type="number" id="product-stock" min="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-min-stock">Stock Mínimo*</label>
+                            <input type="number" id="product-min-stock" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-max-stock">Stock Máximo</label>
+                            <input type="number" id="product-max-stock" min="1">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="product-cost">Costo Unitario*</label>
+                            <input type="number" id="product-cost" min="0" step="0.01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-price">Precio de Venta*</label>
+                            <input type="number" id="product-price" min="0" step="0.01" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Descripción</label>
+                        <textarea id="product-description" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-image">Imagen del Producto</label>
+                        <input type="file" id="product-image" accept="image/*">
+                        <div class="image-preview hidden" id="image-preview">
+                            <img id="preview-image" src="#" alt="Vista previa de la imagen">
+                            <button type="button" id="remove-image-btn">
+                                <i class="fas fa-times"></i> Eliminar imagen
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn secondary close-modal-btn">Cancelar</button>
+                <button class="btn primary" id="save-product-btn">Guardar Producto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Reabastecimiento -->
+    <div class="modal hidden" id="restock-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Reabastecer Producto</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form id="restock-form">
+                    <div class="form-group">
+                        <label for="restock-product-name">Producto</label>
+                        <input type="text" id="restock-product-name" disabled>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="restock-quantity">Cantidad a agregar*</label>
+                            <input type="number" id="restock-quantity" min="1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="restock-cost">Costo unitario (opcional)</label>
+                            <input type="number" id="restock-cost" min="0" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restock-supplier">Proveedor</label>
+                        <select id="restock-supplier">
+                            <option value="">Mismo proveedor</option>
+                            <option value="supplier1">PetHealth</option>
+                            <option value="supplier2">VetSupply</option>
+                            <option value="supplier3">AnimalCare</option>
+                            <option value="other">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="restock-notes">Notas</label>
+                        <textarea id="restock-notes" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn secondary close-modal-btn">Cancelar</button>
+                <button class="btn primary" id="confirm-restock-btn">Confirmar Reabastecimiento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Configuración Firebase -->
+    <script src="../js/firebase-config.js"></script>
+
+    <!-- Scripts del Admin -->
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-inventory.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Abrir modal de nuevo producto
+            const newItemBtn = document.getElementById('new-item-btn');
+            const inventoryModal = document.getElementById('inventory-modal');
+            const closeModalBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
+
+            newItemBtn.addEventListener('click', function () {
+                document.getElementById('inventory-modal-title').textContent = 'Nuevo Producto';
+                inventoryModal.classList.remove('hidden');
+            });
+
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    inventoryModal.classList.add('hidden');
+                    document.getElementById('restock-modal').classList.add('hidden');
+                });
+            });
+
+            // Vista previa de imagen
+            const productImageInput = document.getElementById('product-image');
+            const imagePreview = document.getElementById('image-preview');
+            const previewImage = document.getElementById('preview-image');
+            const removeImageBtn = document.getElementById('remove-image-btn');
+
+            productImageInput.addEventListener('change', function (e) {
+                if (e.target.files.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        previewImage.src = event.target.result;
+                        imagePreview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+
+            removeImageBtn.addEventListener('click', function () {
+                productImageInput.value = '';
+                previewImage.src = '#';
+                imagePreview.classList.add('hidden');
+            });
+
+            // Simular clic en botón de reabastecer
+            document.querySelectorAll('.action-btn.restock').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const productName = this.closest('tr').querySelector('h3').textContent;
+                    document.getElementById('restock-product-name').value = productName;
+                    document.getElementById('restock-modal').classList.remove('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

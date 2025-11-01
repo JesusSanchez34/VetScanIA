@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Citas - SafePet Admin</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- FullCalendar CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilosadmin/estiloscitas.css">
+    <link rel="stylesheet" href="../estilosadmin/estilosgenerales.css">
+</head>
+<body class="admin-appointments">
+    <!-- Barra lateral -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../imagenes/logoVetScanAi.png" alt="SafePet Admin" class="admin-logo">
+            <h2>VetScanIa <span>Admin</span></h2>
+        </div>
+        
+        <div class="admin-profile-card">
+            <div class="profile-image-container">
+                <img id="admin-profile-pic" src="../imagenes/Admin_icon.png" alt="Admin Profile">
+                <span class="online-status"></span>
+            </div>
+            <div class="profile-info">
+                <h3 id="admin-name">Cargando...</h3>
+                <p id="admin-email">admin@safepet.com</p>
+                <p class="admin-role"><i class="fas fa-shield-alt"></i> Administrador</p>
+            </div>
+        </div>
+        
+        <nav class="admin-nav">
+            <ul>
+                <li>
+                    <a href="Dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Usuarios.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Mascotas.html">
+                        <i class="fas fa-paw"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="citas.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span>
+                        <span class="menu-badge" id="pending-appointments">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Inventario.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Inventario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Reportes.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion.html">
+                        <i class="fas fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>Versión 1.0.0</p>
+            <p id="last-login">Último acceso: Cargando...</p>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="admin-content">
+        <!-- Barra superior -->
+        <header class="admin-toolbar">
+            <div class="page-title">
+                <h1>Gestión de Citas</h1>
+                <p>Programa y administra las citas veterinarias</p>
+            </div>
+            
+            <div class="toolbar-actions">
+                <div class="search-container">
+                    <input type="text" id="appointment-search" placeholder="Buscar citas...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="notifications-dropdown">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </button>
+                    <!-- Contenido de notificaciones -->
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="quick-action-btn" id="new-appointment-btn">
+                        <i class="fas fa-plus"></i> Nueva Cita
+                    </button>
+                    <button class="quick-action-btn secondary" id="print-schedule-btn">
+                        <i class="fas fa-print"></i> Imprimir Agenda
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido de Citas -->
+        <div class="appointments-container">
+            <!-- Filtros y controles -->
+            <div class="appointments-controls">
+                <div class="view-options">
+                    <button class="view-option active" data-view="calendar">
+                        <i class="fas fa-calendar-alt"></i> Calendario
+                    </button>
+                    <button class="view-option" data-view="list">
+                        <i class="fas fa-list"></i> Lista
+                    </button>
+                    <button class="view-option" data-view="day">
+                        <i class="fas fa-calendar-day"></i> Día
+                    </button>
+                </div>
+                
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="status-filter">Estado:</label>
+                        <select id="status-filter">
+                            <option value="all">Todas</option>
+                            <option value="pending">Pendientes</option>
+                            <option value="confirmed">Confirmadas</option>
+                            <option value="completed">Completadas</option>
+                            <option value="cancelled">Canceladas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="vet-filter">Veterinario:</label>
+                        <select id="vet-filter">
+                            <option value="all">Todos</option>
+                            <option value="vet1">Dra. Gómez</option>
+                            <option value="vet2">Dr. Rodríguez</option>
+                            <option value="vet3">Dr. Méndez</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-filter">Fecha:</label>
+                        <input type="date" id="date-filter">
+                    </div>
+                    
+                    <button class="clear-filters-btn">
+                        <i class="fas fa-times"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Calendario -->
+            <div class="calendar-container" id="calendar-view">
+                <div id="calendar"></div>
+            </div>
+            
+            <!-- Vista de Lista (oculta inicialmente) -->
+            <div class="list-container hidden" id="list-view">
+                <div class="list-header">
+                    <h2>Citas Programadas</h2>
+                    <div class="list-actions">
+                        <button class="list-action-btn" id="export-appointments">
+                            <i class="fas fa-file-export"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+                
+                <table class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha/Hora</th>
+                            <th>Paciente</th>
+                            <th>Dueño</th>
+                            <th>Servicio</th>
+                            <th>Veterinario</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointments-list">
+                        <!-- Datos dinámicos de Firebase irán aquí -->
+                        <tr>
+                            <td>
+                                <div class="datetime-cell">
+                                    <span class="date">15 Jun 2023</span>
+                                    <span class="time">09:00 AM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="pet-info">
+                                    <img src="../img/pet1.jpg" alt="Max">
+                                    <span>Max (Golden Retriever)</span>
+                                </div>
+                            </td>
+                            <td>Juan Pérez</td>
+                            <td>Consulta general</td>
+                            <td>Dra. Gómez</td>
+                            <td><span class="status-badge confirmed">Confirmada</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-btn view" title="Ver detalles">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn cancel" title="Cancelar">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- Más filas... -->
+                    </tbody>
+                </table>
+                
+                <div class="pagination-controls">
+                    <button class="pagination-btn" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="page-info">Página 1 de 5</span>
+                    <button class="pagination-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal para Nueva/Editar Cita -->
+    <div class="modal hidden" id="appointment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Nueva Cita</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="appointment-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pet-select">Paciente:</label>
+                            <select id="pet-select" required>
+                                <option value="">Seleccionar paciente...</option>
+                                <option value="pet1">Max (Golden Retriever)</option>
+                                <option value="pet2">Luna (Gato Siames)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="owner-select">Dueño:</label>
+                            <select id="owner-select" required>
+                                <option value="">Seleccionar dueño...</option>
+                                <option value="user1">Juan Pérez</option>
+                                <option value="user2">María Sánchez</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointment-date">Fecha:</label>
+                            <input type="date" id="appointment-date" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="appointment-time">Hora:</label>
+                            <input type="time" id="appointment-time" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="service-select">Servicio:</label>
+                            <select id="service-select" required>
+                                <option value="">Seleccionar servicio...</option>
+                                <option value="consultation">Consulta general</option>
+                                <option value="vaccine">Vacunación</option>
+                                <option value="surgery">Cirugía</option>
+                                <option value="grooming">Estética</option>
+                                <option value="emergency">Urgencia</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="vet-select">Veterinario:</label>
+                            <select id="vet-select" required>
+                                <option value="">Asignar veterinario...</option>
+                                <option value="vet1">Dra. Gómez</option>
+                                <option value="vet2">Dr. Rodríguez</option>
+                                <option value="vet3">Dr. Méndez</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="appointment-notes">Notas:</label>
+                        <textarea id="appointment-notes" rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group status-group">
+                        <label>Estado:</label>
+                        <div class="status-options">
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="pending" checked>
+                                <span class="radio-label pending">Pendiente</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="confirmed">
+                                <span class="radio-label confirmed">Confirmada</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="status" value="cancelled">
+                                <span class="radio-label cancelled">Cancelada</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn secondary close-modal-btn">Cancelar</button>
+                <button class="btn primary" id="save-appointment-btn">Guardar Cita</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales/es.min.js"></script>
+    
+    <!-- Configuración Firebase -->
+    <script src="../js/firebase-config.js"></script>
+    
+    <!-- Scripts del Admin -->
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-appointments.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar calendario
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                locale: 'es',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    {
+                        title: 'Max - Consulta',
+                        start: '2023-06-15T09:00:00',
+                        end: '2023-06-15T09:30:00',
+                        extendedProps: {
+                            pet: 'Max',
+                            owner: 'Juan Pérez',
+                            vet: 'Dra. Gómez',
+                            status: 'confirmed'
+                        },
+                        color: '#4e73df'
+                    },
+                    {
+                        title: 'Luna - Vacunación',
+                        start: '2023-06-15T10:30:00',
+                        end: '2023-06-15T11:00:00',
+                        extendedProps: {
+                            pet: 'Luna',
+                            owner: 'María Sánchez',
+                            vet: 'Dr. Rodríguez',
+                            status: 'pending'
+                        },
+                        color: '#f6c23e'
+                    }
+                ],
+                eventClick: function(info) {
+                    openAppointmentModal(info.event);
+                }
+            });
+            calendar.render();
+            
+            // Cambiar entre vistas
+            const viewButtons = document.querySelectorAll('.view-option');
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    viewButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const view = this.dataset.view;
+                    document.getElementById('calendar-view').classList.toggle('hidden', view !== 'calendar');
+                    document.getElementById('list-view').classList.toggle('hidden', view !== 'list');
+                });
+            });
+            
+            // Modal de cita
+            const newAppointmentBtn = document.getElementById('new-appointment-btn');
+            const appointmentModal = document.getElementById('appointment-modal');
+            const closeModalBtns = document.querySelectorAll('.close-modal, .close-modal-btn');
+            
+            newAppointmentBtn.addEventListener('click', function() {
+                document.getElementById('modal-title').textContent = 'Nueva Cita';
+                appointmentModal.classList.remove('hidden');
+            });
+            
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    appointmentModal.classList.add('hidden');
+                });
+            });
+            
+            // Función para abrir modal con datos del evento
+            function openAppointmentModal(event) {
+                document.getElementById('modal-title').textContent = 'Editar Cita: ' + event.title;
+                
+                // Aquí llenarías el formulario con los datos del evento
+                // Ejemplo:
+                // document.getElementById('pet-select').value = event.extendedProps.petId;
+                
+                appointmentModal.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

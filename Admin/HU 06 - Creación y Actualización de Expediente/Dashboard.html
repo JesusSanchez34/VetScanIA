@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - SafePet</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilosadmin/estilosgenerales.css">
+</head>
+<body class="admin-dashboard">
+    <!-- Barra lateral -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../imagenes/logoVetScanAi.png" alt="SafePet Admin" class="admin-logo">
+            <h2>logoVetScanIa <span>Admin</span></h2>
+        </div>
+        
+        <div class="admin-profile-card">
+            <div class="profile-image-container">
+                <img id="admin-profile-pic" src="../imagenes/Admin_icon.png" alt="Admin Profile">
+                <span class="online-status"></span>
+            </div>
+            <div class="profile-info">
+                <h3 id="admin-name">Cargando...</h3>
+                <p id="admin-email">admin@safepet.com</p>
+                <p class="admin-role"><i class="fas fa-shield-alt"></i> Administrador</p>
+            </div>
+        </div>
+        
+        <nav class="admin-nav">
+            <ul>
+                <li class="active">
+                    <a href="Dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Usuarios.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mascotas.html">
+                        <i class="fas fa-paw"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="citas.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span>
+                        <span class="menu-badge" id="pending-appointments">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Inventario.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Inventario</span>
+                        <span class="menu-badge warning" id="low-stock-items">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Reportes.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion.html">
+                        <i class="fas fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>Versión 1.0.0</p>
+            <p id="last-login">Último acceso: Cargando...</p>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="admin-content">
+        <!-- Barra superior -->
+        <header class="admin-toolbar">
+            <div class="page-title">
+                <h1>Dashboard</h1>
+                <p id="current-date">Cargando fecha...</p>
+            </div>
+            
+            <div class="toolbar-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Buscar en el sistema...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="notifications-dropdown">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notification-count">3</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <div class="notification-header">
+                            <h3>Notificaciones</h3>
+                            <button class="mark-all-read">Marcar todas como leídas</button>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notification-icon">
+                                    <i class="fas fa-calendar-exclamation"></i>
+                                </div>
+                                <div class="notification-text">
+                                    <p>3 citas pendientes para hoy</p>
+                                    <span class="notification-time">Hace 10 minutos</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-pills"></i>
+                                </div>
+                                <div class="notification-text">
+                                    <p>Stock bajo de Antiparasitarios</p>
+                                    <span class="notification-time">Hace 2 horas</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notification-icon">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <div class="notification-text">
+                                    <p>5 nuevos usuarios registrados</p>
+                                    <span class="notification-time">Ayer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">Ver todas las notificaciones</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-actions">
+                    <button class="quick-action-btn" id="quick-add-pet">
+                        <i class="fas fa-plus"></i> Nuevo Paciente
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido del Dashboard -->
+        <div class="dashboard-container">
+            <!-- Widgets de Resumen -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon primary">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Citas Hoy</h3>
+                        <p class="stat-number" id="today-appointments">8</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 2 más que ayer</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Pacientes Registrados</h3>
+                        <p class="stat-number" id="total-pets">156</p>
+                        <p class="stat-change positive"><i class="fas fa-arrow-up"></i> 12 este mes</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon warning">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Vacunas Pendientes</h3>
+                        <p class="stat-number" id="pending-vaccines">23</p>
+                        <p class="stat-change negative"><i class="fas fa-exclamation-circle"></i> 5 urgentes</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Stock Crítico</h3>
+                        <p class="stat-number" id="critical-stock">7</p>
+                        <p class="stat-change negative"><i class="fas fa-arrow-down"></i> Reabastecer</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gráficos y Tablas -->
+            <div class="content-row">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h2>Actividad Mensual</h2>
+                        <div class="chart-options">
+                            <select id="chart-period">
+                                <option value="week">Esta semana</option>
+                                <option value="month" selected>Este mes</option>
+                                <option value="year">Este año</option>
+                            </select>
+                        </div>
+                    </div>
+                    <canvas id="activityChart"></canvas>
+                </div>
+                
+                <div class="small-charts-container">
+                    <div class="small-chart">
+                        <h3>Ingresos Mensuales</h3>
+                        <canvas id="incomeChart"></canvas>
+                        <p class="chart-summary" id="monthly-income">$24,580 MXN</p>
+                    </div>
+                    <div class="small-chart">
+                        <h3>Servicios Populares</h3>
+                        <canvas id="servicesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-row">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h2>Últimas Citas</h2>
+                        <a href="Citas.html" class="view-all">Ver todas <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Paciente</th>
+                                <th>Dueño</th>
+                                <th>Servicio</th>
+                                <th>Veterinario</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-appointments">
+                            <!-- Datos dinámicos de Firebase irán aquí -->
+                            <tr>
+                                <td>09:00 AM</td>
+                                <td>
+                                    <div class="pet-info">
+                                        <img src="../img/pet1.jpg" alt="Max">
+                                        <span>Max</span>
+                                    </div>
+                                </td>
+                                <td>Juan Pérez</td>
+                                <td>Consulta general</td>
+                                <td>Dra. Gómez</td>
+                                <td><span class="status-badge confirmed">Confirmada</span></td>
+                                <td>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10:30 AM</td>
+                                <td>
+                                    <div class="pet-info">
+                                        <img src="../img/pet2.jpg" alt="Luna">
+                                        <span>Luna</span>
+                                    </div>
+                                </td>
+                                <td>María Sánchez</td>
+                                <td>Vacunación</td>
+                                <td>Dr. Rodríguez</td>
+                                <td><span class="status-badge pending">Pendiente</span></td>
+                                <td>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <!-- Más filas... -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="quick-actions-container">
+                    <div class="quick-actions-card">
+                        <h2>Acciones Rápidas</h2>
+                        <div class="quick-actions-grid">
+                            <button class="quick-action">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Agendar Cita</span>
+                            </button>
+                            <button class="quick-action">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Registrar Cliente</span>
+                            </button>
+                            <button class="quick-action">
+                                <i class="fas fa-paw"></i>
+                                <span>Agregar Paciente</span>
+                            </button>
+                            <button class="quick-action">
+                                <i class="fas fa-pills"></i>
+                                <span>Administrar Inventario</span>
+                            </button>
+                            <button class="quick-action">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                                <span>Generar Factura</span>
+                            </button>
+                            <button class="quick-action">
+                                <i class="fas fa-bell"></i>
+                                <span>Enviar Recordatorio</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="upcoming-events">
+                        <h2>Próximos Eventos</h2>
+                        <div class="event-list">
+                            <div class="event-item">
+                                <div class="event-date">
+                                    <span class="event-day">15</span>
+                                    <span class="event-month">Jun</span>
+                                </div>
+                                <div class="event-details">
+                                    <h3>Reunión de equipo</h3>
+                                    <p>10:00 AM - Sala de juntas</p>
+                                </div>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">
+                                    <span class="event-day">20</span>
+                                    <span class="event-month">Jun</span>
+                                </div>
+                                <div class="event-details">
+                                    <h3>Entrega de medicamento nuevo</h3>
+                                    <p>Todo el día</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- Configuración Firebase -->
+    <script src="../js/firebase-config.js"></script>
+    
+    <!-- Scripts del Dashboard -->
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-dashboard.js"></script>
+    
+    <script>
+        // Ejemplo de gráficos (los datos reales vendrán de Firebase)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Actualizar fecha actual
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString('es-MX', options);
+            
+            // Gráfico de actividad
+            const activityCtx = document.getElementById('activityChart').getContext('2d');
+            const activityChart = new Chart(activityCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                    datasets: [
+                        {
+                            label: 'Citas',
+                            data: [12, 19, 8, 15, 14, 5, 2],
+                            backgroundColor: 'rgba(78, 115, 223, 0.8)',
+                            borderColor: 'rgba(78, 115, 223, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Nuevos Pacientes',
+                            data: [3, 5, 2, 4, 3, 1, 0],
+                            backgroundColor: 'rgba(40, 167, 69, 0.8)',
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de ingresos
+            const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+            const incomeChart = new Chart(incomeCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Consultas', 'Cirugías', 'Vacunas', 'Estética', 'Productos'],
+                    datasets: [{
+                        data: [12500, 6500, 3200, 1800, 580],
+                        backgroundColor: [
+                            'rgba(78, 115, 223, 0.8)',
+                            'rgba(220, 53, 69, 0.8)',
+                            'rgba(253, 126, 20, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(111, 66, 193, 0.8)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de servicios
+            const servicesCtx = document.getElementById('servicesChart').getContext('2d');
+            const servicesChart = new Chart(servicesCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Consulta', 'Vacunación', 'Estética', 'Urgencias', 'Cirugía'],
+                    datasets: [{
+                        data: [45, 25, 15, 10, 5],
+                        backgroundColor: [
+                            'rgba(78, 115, 223, 0.8)',
+                            'rgba(40, 167, 69, 0.8)',
+                            'rgba(253, 126, 20, 0.8)',
+                            'rgba(220, 53, 69, 0.8)',
+                            'rgba(111, 66, 193, 0.8)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

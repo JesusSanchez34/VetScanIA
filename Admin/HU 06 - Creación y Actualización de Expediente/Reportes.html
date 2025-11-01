@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Admin VetScanIa</title>
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo.png" type="image/png">
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Date Range Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../estilosadmin/estilosreportes.css">
+    <link rel="stylesheet" href="../estilosadmin/estilosgenerales.css">
+</head>
+<body class="admin-reports">
+    <!-- Barra lateral -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-header">
+            <img src="../imagenes/logoVetScanAi.png" alt="SafePet Admin" class="admin-logo">
+            <h2>VetScanIa <span>Admin</span></h2>
+        </div>
+        
+        <div class="admin-profile-card">
+            <div class="profile-image-container">
+                <img id="admin-profile-pic" src="../imagenes/Admin_icon.png" alt="Admin Profile">
+                <span class="online-status"></span>
+            </div>
+            <div class="profile-info">
+                <h3 id="admin-name">Cargando...</h3>
+                <p id="admin-email">admin@safepet.com</p>
+                <p class="admin-role"><i class="fas fa-shield-alt"></i> Administrador</p>
+            </div>
+        </div>
+        
+         <nav class="admin-nav">
+            <ul>
+                <li>
+                    <a href="Dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Usuarios.html">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Gestión de Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="mascotas.html">
+                        <i class="fas fa-paw"></i>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="citas.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span>
+                        <span class="menu-badge" id="pending-appointments">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Inventario.html">
+                        <i class="fas fa-pills"></i>
+                        <span>Inventario</span>
+                        <span class="menu-badge warning" id="low-stock-items">3</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="Reportes.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Reportes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Configuracion.html">
+                        <i class="fas fa-cogs"></i>
+                        <span>Configuración</span>
+                    </a>
+                </li>
+                <li class="nav-divider"></li>
+                <li>
+                    <a href="#" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Cerrar Sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>Versión 1.0.0</p>
+            <p id="last-login">Último acceso: Cargando...</p>
+        </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="admin-content">
+        <!-- Barra superior -->
+        <header class="admin-toolbar">
+            <div class="page-title">
+                <h1>Reportes y Estadísticas</h1>
+                <p>Análisis detallado del rendimiento de la clínica</p>
+            </div>
+            
+            <div class="toolbar-actions">
+                <div class="report-actions">
+                    <button class="btn primary" id="generate-report">
+                        <i class="fas fa-file-export"></i> Generar Reporte
+                    </button>
+                    <button class="btn secondary" id="print-report">
+                        <i class="fas fa-print"></i> Imprimir
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenido de Reportes -->
+        <div class="reports-container">
+            <!-- Filtros de Reporte -->
+            <div class="report-filters">
+                <div class="filter-card">
+                    <h3>Filtrar Reportes</h3>
+                    
+                    <div class="filter-group">
+                        <label for="report-type">Tipo de Reporte:</label>
+                        <select id="report-type" class="form-control">
+                            <option value="financial">Financiero</option>
+                            <option value="appointments">Citas</option>
+                            <option value="inventory">Inventario</option>
+                            <option value="patients">Pacientes</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-range">Rango de Fechas:</label>
+                        <input type="text" id="date-range" class="form-control" placeholder="Seleccionar rango">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="veterinarian">Veterinario:</label>
+                        <select id="veterinarian" class="form-control">
+                            <option value="all">Todos</option>
+                            <option value="1">Dra. Gómez</option>
+                            <option value="2">Dr. Rodríguez</option>
+                            <option value="3">Dr. Méndez</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="service-type">Servicio:</label>
+                        <select id="service-type" class="form-control">
+                            <option value="all">Todos</option>
+                            <option value="consultation">Consulta</option>
+                            <option value="vaccination">Vacunación</option>
+                            <option value="surgery">Cirugía</option>
+                            <option value="grooming">Estética</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-actions">
+                        <button class="btn primary" id="apply-filters">
+                            <i class="fas fa-filter"></i> Aplicar Filtros
+                        </button>
+                        <button class="btn secondary" id="reset-filters">
+                            <i class="fas fa-redo"></i> Restablecer
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reportes Generados -->
+            <div class="report-results">
+                <!-- Pestañas de Reportes -->
+                <div class="report-tabs">
+                    <ul class="tab-nav">
+                        <li class="active" data-tab="summary-tab">Resumen</li>
+                        <li data-tab="financial-tab">Financiero</li>
+                        <li data-tab="appointments-tab">Citas</li>
+                        <li data-tab="patients-tab">Pacientes</li>
+                        <li data-tab="inventory-tab">Inventario</li>
+                    </ul>
+                    
+                    <div class="tab-content">
+                        <!-- Resumen -->
+                        <div id="summary-tab" class="tab-pane active">
+                            <div class="summary-cards">
+                                <div class="summary-card">
+                                    <h3>Ingresos Totales</h3>
+                                    <p class="summary-value" id="total-income">$48,750 MXN</p>
+                                    <p class="summary-change positive"><i class="fas fa-arrow-up"></i> 15% vs período anterior</p>
+                                    <div class="summary-chart">
+                                        <canvas id="incomeTrendChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="summary-card">
+                                    <h3>Citas Atendidas</h3>
+                                    <p class="summary-value" id="total-appointments">124</p>
+                                    <p class="summary-change positive"><i class="fas fa-arrow-up"></i> 8% vs período anterior</p>
+                                    <div class="summary-chart">
+                                        <canvas id="appointmentsTrendChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <div class="summary-card">
+                                    <h3>Nuevos Pacientes</h3>
+                                    <p class="summary-value" id="new-patients">28</p>
+                                    <p class="summary-change neutral"><i class="fas fa-minus"></i> Similar al período anterior</p>
+                                    <div class="summary-chart">
+                                        <canvas id="patientsTrendChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="full-report-chart">
+                                <h3>Actividad Mensual</h3>
+                                <div class="chart-container">
+                                    <canvas id="monthlyActivityChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Financiero -->
+                        <div id="financial-tab" class="tab-pane">
+                            <div class="financial-metrics">
+                                <div class="metric">
+                                    <h4>Ingresos Brutos</h4>
+                                    <p>$48,750 MXN</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Gastos Operativos</h4>
+                                    <p>$22,150 MXN</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Utilidad Neta</h4>
+                                    <p>$26,600 MXN</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Margen de Utilidad</h4>
+                                    <p>54.6%</p>
+                                </div>
+                            </div>
+                            
+                            <div class="financial-charts">
+                                <div class="chart-card">
+                                    <h3>Ingresos por Servicio</h3>
+                                    <canvas id="revenueByServiceChart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h3>Tendencia de Ingresos</h3>
+                                    <canvas id="revenueTrendChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="detailed-table">
+                                <h3>Detalle de Transacciones</h3>
+                                <table class="report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>ID Transacción</th>
+                                            <th>Servicio</th>
+                                            <th>Paciente</th>
+                                            <th>Veterinario</th>
+                                            <th>Monto</th>
+                                            <th>Método Pago</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>15/06/2023</td>
+                                            <td>TX-78945</td>
+                                            <td>Consulta + Vacuna</td>
+                                            <td>Max (Golden Retriever)</td>
+                                            <td>Dra. Gómez</td>
+                                            <td>$850 MXN</td>
+                                            <td>Tarjeta</td>
+                                        </tr>
+                                        <!-- Más filas... -->
+                                    </tbody>
+                                </table>
+                                <div class="table-footer">
+                                    <button class="btn secondary">Exportar a Excel</button>
+                                    <div class="pagination">
+                                        <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                                        <span class="page-info">Página 1 de 5</span>
+                                        <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Citas -->
+                        <div id="appointments-tab" class="tab-pane">
+                            <div class="appointments-metrics">
+                                <div class="metric">
+                                    <h4>Citas Totales</h4>
+                                    <p>124</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Tasa de Asistencia</h4>
+                                    <p>92%</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Citas Canceladas</h4>
+                                    <p>8</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Promedio por Día</h4>
+                                    <p>6.2</p>
+                                </div>
+                            </div>
+                            
+                            <div class="appointments-charts">
+                                <div class="chart-card">
+                                    <h3>Citas por Tipo</h3>
+                                    <canvas id="appointmentsByTypeChart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h3>Horarios Más Solicitados</h3>
+                                    <canvas id="peakHoursChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="detailed-table">
+                                <h3>Detalle de Citas</h3>
+                                <table class="report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha/Hora</th>
+                                            <th>Paciente</th>
+                                            <th>Dueño</th>
+                                            <th>Servicio</th>
+                                            <th>Veterinario</th>
+                                            <th>Estado</th>
+                                            <th>Duración</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>15/06/2023 09:00</td>
+                                            <td>Max (Golden Retriever)</td>
+                                            <td>Juan Pérez</td>
+                                            <td>Consulta general</td>
+                                            <td>Dra. Gómez</td>
+                                            <td><span class="status-badge completed">Completada</span></td>
+                                            <td>30 min</td>
+                                        </tr>
+                                        <!-- Más filas... -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Pacientes -->
+                        <div id="patients-tab" class="tab-pane">
+                            <div class="patients-metrics">
+                                <div class="metric">
+                                    <h4>Pacientes Activos</h4>
+                                    <p>156</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Nuevos este Mes</h4>
+                                    <p>28</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Especie Más Común</h4>
+                                    <p>Canino (68%)</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Edad Promedio</h4>
+                                    <p>4.2 años</p>
+                                </div>
+                            </div>
+                            
+                            <div class="patients-charts">
+                                <div class="chart-card">
+                                    <h3>Distribución por Especie</h3>
+                                    <canvas id="patientsBySpeciesChart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h3>Razas Más Comunes</h3>
+                                    <canvas id="commonBreedsChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="detailed-table">
+                                <h3>Registro de Pacientes</h3>
+                                <table class="report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Especie</th>
+                                            <th>Raza</th>
+                                            <th>Edad</th>
+                                            <th>Dueño</th>
+                                            <th>Última Visita</th>
+                                            <th>Vacunas al Día</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Max</td>
+                                            <td>Canino</td>
+                                            <td>Golden Retriever</td>
+                                            <td>3 años</td>
+                                            <td>Juan Pérez</td>
+                                            <td>15/06/2023</td>
+                                            <td><i class="fas fa-check-circle success"></i></td>
+                                        </tr>
+                                        <!-- Más filas... -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Inventario -->
+                        <div id="inventory-tab" class="tab-pane">
+                            <div class="inventory-metrics">
+                                <div class="metric">
+                                    <h4>Productos en Inventario</h4>
+                                    <p>87</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Productos Bajos</h4>
+                                    <p>12</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Productos Agotados</h4>
+                                    <p>3</p>
+                                </div>
+                                <div class="metric">
+                                    <h4>Valor Total</h4>
+                                    <p>$124,850 MXN</p>
+                                </div>
+                            </div>
+                            
+                            <div class="inventory-charts">
+                                <div class="chart-card">
+                                    <h3>Inventario por Categoría</h3>
+                                    <canvas id="inventoryByCategoryChart"></canvas>
+                                </div>
+                                <div class="chart-card">
+                                    <h3>Productos Más Vendidos</h3>
+                                    <canvas id="topProductsChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <div class="detailed-table">
+                                <h3>Productos con Stock Bajo</h3>
+                                <table class="report-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Categoría</th>
+                                            <th>Stock Actual</th>
+                                            <th>Stock Mínimo</th>
+                                            <th>Última Compra</th>
+                                            <th>Proveedor</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="warning-row">
+                                            <td>Antiparasitario Oral</td>
+                                            <td>Medicamento</td>
+                                            <td>5</td>
+                                            <td>15</td>
+                                            <td>10/06/2023</td>
+                                            <td>PetPharma</td>
+                                            <td>
+                                                <button class="action-btn order"><i class="fas fa-truck"></i> Ordenar</button>
+                                            </td>
+                                        </tr>
+                                        <!-- Más filas... -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Generación de Reporte -->
+    <div class="modal" id="report-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Generar Reporte Personalizado</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="report-title">Título del Reporte:</label>
+                    <input type="text" id="report-title" class="form-control" placeholder="Ej: Reporte Financiero Q2 2023">
+                </div>
+                
+                <div class="form-group">
+                    <label for="report-format">Formato:</label>
+                    <select id="report-format" class="form-control">
+                        <option value="pdf">PDF</option>
+                        <option value="excel">Excel</option>
+                        <option value="csv">CSV</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Incluir:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" checked> Gráficos</label>
+                        <label><input type="checkbox" checked> Tablas detalladas</label>
+                        <label><input type="checkbox"> Datos brutos</label>
+                        <label><input type="checkbox" checked> Análisis comparativo</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="report-notes">Notas adicionales:</label>
+                    <textarea id="report-notes" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn secondary close-modal">Cancelar</button>
+                <button class="btn primary" id="confirm-generate">Generar Reporte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    
+    <!-- Moment.js para manejo de fechas -->
+    <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment/locale/es.js"></script>
+    
+    <!-- Date Range Picker -->
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    
+    <!-- Configuración Firebase -->
+    <script src="../js/firebase-config.js"></script>
+    
+    <!-- Scripts del Dashboard -->
+    <script src="../js/admin-auth.js"></script>
+    <script src="../js/admin-reports.js"></script>
+    
+    <script>
+        // Configuración inicial cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar el selector de rango de fechas
+            $('#date-range').daterangepicker({
+                locale: {
+                    format: 'DD/MM/YYYY',
+                    applyLabel: 'Aplicar',
+                    cancelLabel: 'Cancelar',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Personalizado',
+                    daysOfWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    firstDay: 1
+                },
+                opens: 'left',
+                startDate: moment().startOf('month'),
+                endDate: moment().endOf('month')
+            });
+            
+            // Lógica de pestañas
+            const tabNavItems = document.querySelectorAll('.tab-nav li');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remover clase active de todos
+                    tabNavItems.forEach(navItem => navItem.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    // Agregar active al seleccionado
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Modal de generación de reporte
+            const modal = document.getElementById('report-modal');
+            const openModalBtn = document.getElementById('generate-report');
+            const closeModalBtns = document.querySelectorAll('.close-modal');
+            
+            openModalBtn.addEventListener('click', function() {
+                modal.style.display = 'block';
+            });
+            
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Inicializar gráficos (datos de ejemplo)
+            initializeCharts();
+        });
+        
+        function initializeCharts() {
+            // Gráfico de tendencia de ingresos (Resumen)
+            const incomeTrendCtx = document.getElementById('incomeTrendChart').getContext('2d');
+            new Chart(incomeTrendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Ingresos',
+                        data: [32000, 35000, 42000, 38000, 45000, 48750],
+                        borderColor: 'rgba(40, 167, 69, 1)',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: false } }
+                }
+            });
+            
+            // Más gráficos pueden ser inicializados aquí...
+            // (Los gráficos reales se conectarán a Firebase en admin-reports.js)
+        }
+    </script>
+</body>
+</html>
