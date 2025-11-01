@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetScanIa -Asistente Veterinario</title>
+    <!-- Favicon (aquí irá tu logo) -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="estilos/estilosIndex.css">
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <!-- Logo de la veterinaria -->
+                <a href="Index.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Index.html" class="nav-link active">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Agendar.html" class="nav-link">Agendar Cita</a></li>
+                    <li class="nav-item"><a href="Vacunas.html" class="nav-link">Control de Vacunas</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link login-btn">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Cuidamos a tu mascota como en casa</h1>
+                <p>Servicios veterinarios de calidad con seguimiento digital completo</p>
+                <div class="hero-buttons">
+                    <a href="Agendar.html" class="btn primary">Agendar cita</a>
+                    <a href="Vacunas.html" class="btn secondary">Control de vacunas</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios destacados -->
+    <section class="featured-services">
+        <div class="container">
+            <h2>Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3>Vacunación</h3>
+                    <p>Programa completo de vacunación con recordatorios digitales</p>
+                    <a href="Servicios.html#vacunacion" class="service-link">Más información</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Consulta General</h3>
+                    <p>Atención profesional para diagnóstico y tratamiento</p>
+                    <a href="Servicios.html" class="service-link">Más información</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Estética Canina</h3>
+                    <p>Baño, corte de pelo y cuidado de uñas</p>
+                    <a href="Servicios.html#estetica" class="service-link">Más información</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Nutrición</h3>
+                    <p>Asesoramiento nutricional personalizado</p>
+                    <a href="Servicios.html#nutricion" class="service-link">Más información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Control de vacunas -->
+    <section class="vaccine-control">
+        <div class="container">
+            <div class="vaccine-content">
+                <div class="vaccine-text">
+                    <h2>Control Digital de Vacunas</h2>
+                    <p>Con VetScanIa nunca olvidarás una vacuna importante para tu mascota. Nuestro sistema te
+                        notificará
+                        cuando sea momento de aplicar cada vacuna y mantendrá un historial completo accesible desde
+                        cualquier dispositivo.</p>
+                    <ul class="vaccine-features">
+                        <li><i class="fas fa-check-circle"></i> Recordatorios automáticos</li>
+                        <li><i class="fas fa-check-circle"></i> Historial completo</li>
+                        <li><i class="fas fa-check-circle"></i> Acceso seguro 24/7</li>
+                        <li><i class="fas fa-check-circle"></i> Compatible con múltiples mascotas</li>
+                    </ul>
+                    <a href="Vacunas.html" class="btn primary">Gestionar vacunas</a>
+                </div>
+                <div class="vaccine-image">
+                    <!-- Imagen ilustrativa del sistema de vacunas -->
+                    <img src="imagenes/control_vacunas.png" alt="Control de Vacunas VetScanIa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Asistente Virtual -->
+    <section class="virtual-assistant">
+        <div class="container">
+            <div class="assistant-content">
+                <div class="assistant-image">
+                    <!-- Imagen del asistente virtual -->
+                    <img src="imagenes/Assistant.png" alt="Asistente Virtual VetScanIa">
+                </div>
+                <div class="assistant-text">
+                    <h2>Asistente Virtual Veterinario</h2>
+                    <p>Nuestra IA especializada puede responder tus dudas sobre el cuidado de mascotas las 24 horas del
+                        día. Obtén orientación inmediata sobre síntomas, alimentación o cuidados básicos.</p>
+                    <div class="assistant-features">
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>Disponible 24/7</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-dog"></i>
+                            <span>Especializado en mascotas</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Información verificada</span>
+                        </div>
+                    </div>
+                    <button class="btn primary" id="open-chat">Probar Asistente Virtual</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"Gracias a VetScanIa nunca he olvidado una vacuna de mis perros. La aplicación me envía
+                            recordatorios y puedo ver todo el historial médico en un solo lugar."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="imagenes/maria_gonzalez.avif" alt="Cliente 1">
+                        <div>
+                            <h4>María González</h4>
+                            <span>Dueña de 2 golden retrievers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"El servicio de consulta en línea me salvó cuando mi gato tuvo una emergencia a medianoche.
+                            El veterinario me orientó hasta que pude llevarlo a la clínica."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="imagenes/carlos_mendoza.avif" alt="Cliente 2">
+                        <div>
+                            <h4>Carlos Mendoza</h4>
+                            <span>Dueño de 3 gatos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Agendar cita -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Necesitas atención para tu mascota?</h2>
+                <p>Agenda una cita con nuestros especialistas o consulta nuestro servicio de orientación en línea</p>
+                <div class="cta-buttons">
+                    <a href="Agendar.html" class="btn primary">Agendar cita ahora</a>
+                    <a href="Contacto.html" class="btn secondary">Contactar veterinario</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="Servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="Servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="Servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="Servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="Servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot/IA -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <img src="imagenes/Assistant.png" alt="Asistente Virtual">
+                <h3>Asistente Virtual VetScanIa</h3>
+            </div>|
+            <button class="close-chat" id="close-chat" aria-label="Cerrar chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="chatbot-messages" id="chatbot-messages" aria-live="polite" aria-relevant="additions">
+            <!-- Saludo inicial (si Firestore está vacío, tu JS lo repone de todas formas) -->
+            <div class="chat-message bot-message">
+                <p>¡Hola! Soy el asistente virtual de VetScanIa. ¿En qué puedo ayudarte hoy con tu mascota?</p>
+            </div>
+        </div>
+
+        <!-- SOLO UNA capa de .chatbot-input (antes había dos anidadas) -->
+        <div class="chatbot-input" id="chatbot-input">
+            <!-- Input de texto (modo normal) -->
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí..."
+                aria-label="Escribe tu mensaje">
+
+            <!-- Chip de adjunto (modo normal) -->
+            <div id="attachment-chip" class="attachment-chip" style="display:none">
+                <img id="attachment-thumb" alt="Vista previa" class="chip-thumb">
+                <span id="attachment-name" class="chip-name"></span>
+                <button id="remove-attachment" class="chip-remove" title="Quitar adjunto"
+                    aria-label="Quitar adjunto">×</button>
+            </div>
+
+            <!-- File input oculto + botones -->
+            <input type="file" id="image-input" accept="image/*" style="display:none">
+            <button id="attach-image" title="Adjuntar imagen" aria-label="Adjuntar imagen">
+                <i class="fas fa-paperclip" aria-hidden="true"></i>
+            </button>
+            <button id="send-message" title="Enviar mensaje" aria-label="Enviar mensaje">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            </button>
+
+            <!-- ===== Card MODO IMAGEN (aparece cuando el bot la solicita) ===== -->
+            <div id="image-mode-card" class="image-mode-card" style="display:none">
+                <div class="image-mode-header">
+                    <h4 id="image-mode-title">¿Puedes compartir una foto?</h4>
+                    <p id="image-mode-reason" class="image-mode-reason">Necesito ver mejor la zona afectada.</p>
+                </div>
+
+                <!-- Dropzone / selector -->
+                <div id="image-mode-drop" class="image-mode-drop" role="button" tabindex="0"
+                    aria-label="Seleccionar o arrastrar imagen">
+                    <img id="image-mode-preview" class="image-mode-preview" style="display:none" alt="Vista previa">
+                    <div class="image-mode-hint">
+                        <i class="fas fa-image" aria-hidden="true"></i>
+                        <span>Arrastra una imagen aquí o haz clic para seleccionar</span>
+                    </div>
+                </div>
+
+                <!-- Acciones -->
+                <div class="image-mode-actions">
+                    <button id="image-mode-cancel" class="btn-outline"
+                        aria-label="Cancelar envío de foto">Cancelar</button>
+                    <button id="image-mode-send" class="btn-solid" aria-label="Enviar foto">Enviar foto</button>
+                </div>
+            </div>
+            <!-- ===== /Card MODO IMAGEN ===== -->
+        </div>
+
+        <div class="chatbot-suggestions" id="chatbot-suggestions">
+            <div class="suggestions-header">
+                <p style="color: black;">Preguntas frecuentes:</p>
+                <button style="color: black;" class="close-suggestions-btn" id="close-suggestions"
+                    aria-label="Ocultar sugerencias">×</button>
+            </div>
+            <div class="suggestion-buttons" id="suggestion-buttons">
+                <!-- Las preguntas se generarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+    
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-button" id="chatbot-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>Asistente Virtual</span>
+    </button>
+
+    <!-- Script placeholder para el chatbot -->
+
+    <script src="script/buttoninvisible.js"></script>
+
+
+
+    <!-- Carga Firebase -->
+    <script type="module" src="script/firebase-init.js"></script>
+
+    <!-- Tu script del chatbot -->
+    <script type="module" src="script/chatbot.js"></script>
+
+
+</body>
+
+</html>
