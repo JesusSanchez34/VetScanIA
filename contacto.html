@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - VetScanIA</title>
+    <!-- Favicon -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="estilos/estiloscontacto.css">
+    <!-- script de sesion -->
+    <script type="module" src="script/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="Home.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Home.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Agendar.html" class="nav-link">Agendar Cita</a></li>
+                    <li class="nav-item"><a href="Vacunas.html" class="nav-link">Control de Vacunas</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link active">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link login-btn">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="user-menu hidden" id="user-menu">
+                <div class="user-avatar" id="user-avatar">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="Configuracion.html">Configuración</a></li>
+                        <li><a href="#" id="logout-btn">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner para contacto -->
+    <section class="hero contact-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Contáctanos</h1>
+                <p>Estamos aquí para responder tus preguntas y atender a tus mascotas</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección principal de contacto -->
+    <section class="contact-main">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-form-container">
+                    <h2>Envíanos un mensaje</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Nombre completo:</label>
+                            <input type="text" id="contactName" name="contactName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactEmail">Correo electrónico:</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">Teléfono (opcional):</label>
+                            <input type="tel" id="contactPhone" name="contactPhone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactSubject">Asunto:</label>
+                            <select id="contactSubject" name="contactSubject" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="consulta">Consulta general</option>
+                                <option value="emergencia">Emergencia</option>
+                                <option value="cita">Agendar cita</option>
+                                <option value="vacunas">Información sobre vacunas</option>
+                                <option value="servicios">Información sobre servicios</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactMessage">Mensaje:</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="contactAgreement" name="contactAgreement" required>
+                            <label for="contactAgreement">Acepto la <a href="Politica.html">política de
+                                    privacidad</a></label>
+                        </div>
+
+                        <button type="submit" class="btn primary">Enviar mensaje</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-container">
+                    <h2>Información de contacto</h2>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Dirección</h3>
+                            <p>Av. Veterinaria 123, Col. Mascotas Felices<br>Ciudad de México, CDMX 03100</p>
+                            <a href="https://maps.google.com" target="_blank" class="map-link">Ver en mapa</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Teléfonos</h3>
+                            <p>Consultas: <a href="tel:+525512345678">55 1234 5678</a><br>
+                                Emergencias: <a href="tel:+525598765432">55 9876 5432</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Correo electrónico</h3>
+                            <p><a href="mailto:contacto@vetscania.com">contacto@vetscania.com</a><br>
+                                <a href="mailto:emergencias@vetscania.com">emergencias@vetscania.com</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h3>Horario de atención</h3>
+                            <p>Lunes a Viernes: 9:00 AM - 8:00 PM<br>
+                                Sábados: 9:00 AM - 2:00 PM<br>
+                                Urgencias: 24/7</p>
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <h3>Síguenos en redes sociales</h3>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.888244553774!2d-99.177690924687!3d19.426971040917075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff35f5bd1563%3A0x6c366f0e2de02ff7!2sEl%20%C3%81ngel%20de%20la%20Independencia!5e0!3m2!1ses-419!2smx!4v1719288530168!5m2!1ses-419!2smx"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preguntas frecuentes -->
+    <section class="contact-faq">
+        <div class="container">
+            <h2>Preguntas frecuentes</h2>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cuál es el horario de atención?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nuestro horario regular es de lunes a viernes de 9:00 AM a 8:00 PM y sábados de 9:00 AM a
+                            2:00 PM. Para emergencias, atendemos las 24 horas del día, los 7 días de la semana.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Necesito agendar cita para urgencias?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No es necesario agendar cita para casos de emergencia. Puedes acudir directamente a nuestra
+                            clínica o llamar al número de emergencias para que te orientemos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué métodos de pago aceptan?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aceptamos efectivo, tarjetas de crédito y débito (Visa, MasterCard, American Express),
+                            transferencias bancarias y PayPal. También contamos con planes de financiamiento para
+                            procedimientos mayores.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Ofrecen servicios a domicilio?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, ofrecemos consultas a domicilio en un horario específico. Este servicio tiene un costo
+                            adicional que varía según la ubicación. Contáctanos para más información.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cómo puedo obtener un certificado de vacunación?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Puedes solicitar tu certificado de vacunación directamente en recepción después de aplicar
+                            las vacunas. Si ya vacunaste a tu mascota con nosotros, puedes acceder al certificado
+                            digital desde tu cuenta en nuestro portal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="Servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="Servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="Servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="Servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="Servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot/IA -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <img src="imagenes/Assistant.png" alt="Asistente Virtual">
+                <h3>Asistente Virtual VetScanIa</h3>
+            </div>
+            <button class="close-chat" id="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot-message">
+                <p>¡Hola! Soy el asistente virtual de VetScanIa. ¿En qué puedo ayudarte hoy con tu mascota?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+            <button id="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-suggestions">
+            <p>Preguntas frecuentes:</p>
+            <div class="suggestion-buttons">
+                <button class="suggestion-btn">¿Cuál es su horario?</button>
+                <button class="suggestion-btn">¿Tienen servicio de urgencias?</button>
+                <button class="suggestion-btn">¿Dónde están ubicados?</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-button" id="chatbot-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>Asistente Virtual</span>
+    </button>
+
+    <!-- Scripts -->
+
+    <!-- Script placeholder para el chatbot -->
+
+    <script src="script/buttoninvisible.js"></script>
+
+
+    <!-- Carga Firebase -->
+    <script type="module" src="script/firebase-init.js"></script>
+
+    <!-- Tu script del chatbot -->
+    <script type="module" src="script/chatbot.js"></script>
+
+
+</body>
+
+</html>

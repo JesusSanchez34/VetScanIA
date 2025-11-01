@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Vacunas - VetScanIA</title>
+    <!-- Favicon -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="estilos/estilosvacunas.css">
+    <!-- script de sesion -->
+    <script type="module" src="script/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="Home.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Home.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Agendar.html" class="nav-link">Agendar Cita</a></li>
+                    <li class="nav-item"><a href="Vacunas.html" class="nav-link active">Control de Vacunas</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link login-btn">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="user-menu hidden" id="user-menu">
+                <div class="user-avatar" id="user-avatar">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="Configuracion.html">Configuración</a></li>
+                        <li><a href="#" id="logout-btn">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner para control de vacunas -->
+    <section class="hero vaccines-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Control de Vacunación para tu Mascota</h1>
+                <p>Mantén al día el esquema de vacunación y recibe recordatorios automáticos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Panel de control de vacunas -->
+    <section class="vaccines-dashboard">
+        <div class="container">
+            <div class="dashboard-container">
+                <!-- Sección para usuarios registrados -->
+                <div class="vaccines-login" id="vaccinesLogin">
+                    <h2>Accede a tu historial de vacunas</h2>
+                    <p>Inicia sesión para ver y gestionar el esquema de vacunación de tus mascotas</p>
+                    <div class="login-buttons">
+                        <a href="Login.html" class="btn primary">Iniciar sesión</a>
+                        <a href="Registro.html" class="btn secondary">Registrarse</a>
+                    </div>
+                </div>
+
+                <!-- Sección que se muestra después del login (inicialmente oculta) -->
+                <div class="vaccines-content" id="vaccinesContent" style="display: none;">
+                    <div class="pets-selector">
+                        <h3>Tus mascotas</h3>
+                        <div class="pets-grid" id="petsGrid">
+                            <!-- Mascotas se cargarán dinámicamente -->
+                        </div>
+                        <button class="btn secondary" id="addPetBtn">+ Añadir mascota</button>
+                    </div>
+
+                    <div class="vaccines-info">
+                        <div class="pet-info-header">
+                            <h3 id="petNameHeader">Luna</h3>
+                            <span class="pet-specs" id="petSpecs">Perro • 2 años • Schnauzer</span>
+                        </div>
+
+                        <div class="vaccines-status">
+                            <div class="status-card next-vaccine">
+                                <div class="status-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="status-content">
+                                    <h4>Próxima vacuna</h4>
+                                    <p id="nextVaccine">Rabia - 15/05/2025</p>
+                                </div>
+                            </div>
+
+                            <div class="status-card vaccine-count">
+                                <div class="status-icon">
+                                    <i class="fas fa-syringe"></i>
+                                </div>
+                                <div class="status-content">
+                                    <h4>Vacunas aplicadas</h4>
+                                    <p id="vaccineCount">5</p>
+                                </div>
+                            </div>
+
+                            <div class="status-card last-vaccine">
+                                <div class="status-icon">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div class="status-content">
+                                    <h4>Última vacuna</h4>
+                                    <p id="lastVaccine">Parvovirus - 15/09/2023</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="vaccines-calendar">
+                            <h4>Calendario de vacunación</h4>
+                            <div class="calendar-nav">
+                                <button class="calendar-arrow"><i class="fas fa-chevron-left"></i></button>
+                                <h5 id="currentMonth">Mayo 2025</h5>
+                                <button class="calendar-arrow"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid">
+                                <!-- Calendario se generará dinámicamente -->
+                            </div>
+                        </div>
+
+                        <div class="vaccines-history">
+                            <h4>Historial completo de vacunas</h4>
+                            <div class="history-table-container">
+                                <table class="history-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Vacuna</th>
+                                            <th>Fecha aplicación</th>
+                                            <th>Próxima dosis</th>
+                                            <th>Veterinario</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="vaccinesTableBody">
+                                        <!-- Historial se cargará dinámicamente -->
+                                        <tr>
+                                            <td>Rabia</td>
+                                            <td>15/05/2023</td>
+                                            <td>12/05/2025</td>
+                                            <td>Dr. Pérez</td>
+                                            <td><button class="table-btn">Certificado</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Parvovirus</td>
+                                            <td>19/05/2025</td>
+                                            <td>11/04/2025</td>
+                                            <td>Dra. Gómez</td>
+                                            <td><button class="table-btn">Certificado</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vaccines-knowledge">
+                <h2>Información sobre vacunas</h2>
+                <div class="knowledge-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="perros">Para perros</button>
+                        <button class="tab-btn" data-tab="gatos">Para gatos</button>
+                        <button class="tab-btn" data-tab="importancia">Importancia</button>
+                    </div>
+
+                    <div class="tab-content active" id="perros-tab">
+                        <h3>Esquema de vacunación para perros</h3>
+                        <div class="vaccine-scheme">
+                            <div class="scheme-card">
+                                <h4>Vacuna múltiple (Moquillo, Parvovirus, etc.)</h4>
+                                <ul>
+                                    <li><strong>Primera dosis:</strong> 6-8 semanas</li>
+                                    <li><strong>Refuerzos:</strong> Cada 3-4 semanas hasta las 16 semanas</li>
+                                    <li><strong>Adultos:</strong> Anual o cada 3 años según vacuna</li>
+                                </ul>
+                            </div>
+
+                            <div class="scheme-card">
+                                <h4>Rabia</h4>
+                                <ul>
+                                    <li><strong>Primera dosis:</strong> 12-16 semanas</li>
+                                    <li><strong>Refuerzo:</strong> 1 año después</li>
+                                    <li><strong>Adultos:</strong> Cada 1-3 años según legislación local</li>
+                                </ul>
+                            </div>
+
+                            <div class="scheme-card">
+                                <h4>Leptospirosis</h4>
+                                <ul>
+                                    <li><strong>Primera dosis:</strong> 12 semanas</li>
+                                    <li><strong>Refuerzo:</strong> 2-4 semanas después</li>
+                                    <li><strong>Adultos:</strong> Anual</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="gatos-tab">
+                        <h3>Esquema de vacunación para gatos</h3>
+                        <div class="vaccine-scheme">
+                            <div class="scheme-card">
+                                <h4>Trivalente felina (Panleucopenia, Calicivirus, Rinotraqueitis)</h4>
+                                <ul>
+                                    <li><strong>Primera dosis:</strong> 6-8 semanas</li>
+                                    <li><strong>Refuerzos:</strong> Cada 3-4 semanas hasta las 16 semanas</li>
+                                    <li><strong>Adultos:</strong> Anual o cada 3 años</li>
+                                </ul>
+                            </div>
+
+                            <div class="scheme-card">
+                                <h4>Leucemia felina</h4>
+                                <ul>
+                                    <li><strong>Primera dosis:</strong> 8-10 semanas</li>
+                                    <li><strong>Refuerzo:</strong> 3-4 semanas después</li>
+                                    <li><strong>Adultos:</strong> Anual para gatos de riesgo</li>
+                                </ul>
+                            </div>
+
+                            <div class="scheme-card">
+                                <h4>Rabia</h4>
+                                <ul>
+                                    <li><strong>Primera dosis:</strong> 12-16 semanas</li>
+                                    <li><strong>Refuerzo:</strong> 1 año después</li>
+                                    <li><strong>Adultos:</strong> Cada 1-3 años</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="importancia-tab">
+                        <h3>Importancia de la vacunación</h3>
+                        <div class="importance-content">
+                            <div class="importance-card">
+                                <div class="importance-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="importance-text">
+                                    <h4>Protege a tu mascota</h4>
+                                    <p>Las vacunas previenen enfermedades graves que pueden ser mortales para perros y
+                                        gatos.</p>
+                                </div>
+                            </div>
+
+                            <div class="importance-card">
+                                <div class="importance-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="importance-text">
+                                    <h4>Protege a tu familia</h4>
+                                    <p>Algunas enfermedades animales pueden transmitirse a humanos (zoonosis).</p>
+                                </div>
+                            </div>
+
+                            <div class="importance-card">
+                                <div class="importance-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="importance-text">
+                                    <h4>Cuidado responsable</h4>
+                                    <p>Mantener las vacunas al día es parte fundamental del cuidado de tu mascota.</p>
+                                </div>
+                            </div>
+
+                            <div class="importance-card">
+                                <div class="importance-icon">
+                                    <i class="fas fa-gavel"></i>
+                                </div>
+                                <div class="importance-text">
+                                    <h4>Cumplimiento legal</h4>
+                                    <p>Algunas vacunas como la antirrábica son obligatorias por ley en muchos países.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA para agendar vacunación -->
+    <section class="cta vaccines-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Necesitas vacunar a tu mascota?</h2>
+                <p>Agenda una cita con nuestros especialistas en vacunación</p>
+                <div class="cta-buttons">
+                    <a href="Agendar.html?service=vacunacion" class="btn primary">Agendar vacunación</a>
+                    <a href="Contacto.html" class="btn secondary">Consultar costos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="Servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="Servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="Servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="Servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="Servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot/IA -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <img src="imagenes/Assistant.png" alt="Asistente Virtual">
+                <h3>Asistente Virtual VetScanIa</h3>
+            </div>
+            <button class="close-chat" id="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot-message">
+                <p>¡Hola! Soy el asistente virtual de VetScanIa. ¿En qué puedo ayudarte hoy con tu mascota?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+            <button id="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-suggestions">
+            <p>Preguntas frecuentes:</p>
+            <div class="suggestion-buttons">
+                <button class="suggestion-btn">¿Qué vacunas necesita mi perro?</button>
+                <button class="suggestion-btn">Efectos secundarios de vacunas</button>
+                <button class="suggestion-btn">Costo de vacunación</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-button" id="chatbot-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>Asistente Virtual</span>
+    </button>
+
+    <!-- Scripts -->
+
+    <script src="script/buttoninvisible.js"></script>
+
+    <!-- Carga Firebase -->
+    <script type="module" src="script/firebase-init.js"></script>
+
+    <!-- Tu script del chatbot -->
+    <script type="module" src="script/chatbot.js"></script>
+
+</body>
+
+</html>
