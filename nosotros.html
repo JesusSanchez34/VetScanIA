@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conócenos - VetScanIA</title>
+    <!-- Favicon -->
+    <link rel="icon" href="imagenes/logoVet.png" type="image/png">
+    <!-- Fuentes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@500;600&display=swap"
+        rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- estilos -->
+    <link rel="stylesheet" href="estilos/estiloscoocenos.css">
+    <!-- script de sesion -->
+    <script type="module" src="script/navbar.js"></script>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <a href="Home.html">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="logo">
+                </a>
+            </div>
+
+            <nav class="navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="Home.html" class="nav-link">Inicio</a></li>
+                    <li class="nav-item"><a href="Servicios.html" class="nav-link">Servicios</a></li>
+                    <li class="nav-item"><a href="Agendar.html" class="nav-link">Agendar Cita</a></li>
+                    <li class="nav-item"><a href="Vacunas.html" class="nav-link">Control de Vacunas</a></li>
+                    <li class="nav-item"><a href="Nosotros.html" class="nav-link active">Conócenos</a></li>
+                    <li class="nav-item"><a href="Contacto.html" class="nav-link">Contacto</a></li>
+                    <li class="nav-item"><a href="Login.html" class="nav-link login-btn">Iniciar Sesión</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="user-menu hidden" id="user-menu">
+                <div class="user-avatar" id="user-avatar">
+                    <!-- Se llenará dinámicamente -->
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <ul>
+                        <li><a href="Configuracion.html">Configuración</a></li>
+                        <li><a href="#" id="logout-btn">Cerrar sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner para Conócenos -->
+    <section class="hero about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Nuestra Historia y Pasión por las Mascotas</h1>
+                <p>Conoce más sobre nuestra misión, valores y el equipo que cuida de tu compañero peludo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestra Historia -->
+    <section class="about-history">
+        <div class="container">
+            <div class="history-content">
+                <div class="history-text">
+                    <h2>Nuestra Historia</h2>
+                    <p>Fundada en 2015, VetScanIA nació de la pasión por combinar la medicina veterinaria de excelencia
+                        con la tecnología más avanzada para el cuidado de las mascotas. Lo que comenzó como una pequeña
+                        clínica familiar hoy es un centro veterinario de referencia en la ciudad.</p>
+                    <p>Nuestro fundador, el Dr. Carlos Méndez, imaginó un lugar donde cada mascota recibiera el mismo
+                        cuidado y atención que le daríamos a un miembro de nuestra propia familia. Esta filosofía sigue
+                        siendo el corazón de todo lo que hacemos.</p>
+                    <div class="milestones">
+                        <div class="milestone">
+                            <div class="milestone-number">2015</div>
+                            <div class="milestone-text">Apertura de nuestra primera clínica</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">2018</div>
+                            <div class="milestone-text">Implementación del sistema digital de historiales</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">2020</div>
+                            <div class="milestone-text">Lanzamiento de la plataforma de control de vacunas</div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-number">2023</div>
+                            <div class="milestone-text">Integración de IA para diagnóstico asistido</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-image">
+                    <img src="imagenes/clinica_veterinaria.jpg" alt="Nuestra clínica en sus inicios">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión, Visión y Valores -->
+    <section class="about-mission">
+        <div class="container">
+            <h2>Nuestros Pilares Fundamentales</h2>
+
+            <div class="pillars-container">
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Misión</h3>
+                    <p>Proporcionar atención veterinaria excepcional mediante la combinación de medicina tradicional con
+                        tecnologías innovadoras, garantizando el bienestar de las mascotas y la tranquilidad de sus
+                        dueños.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Visión</h3>
+                    <p>Ser reconocidos como el centro veterinario líder en innovación tecnológica y calidad de servicio,
+                        transformando el estándar de cuidado animal en nuestra región.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Valores</h3>
+                    <ul class="values-list">
+                        <li><i class="fas fa-paw"></i> Amor por los animales</li>
+                        <li><i class="fas fa-flask"></i> Excelencia profesional</li>
+                        <li><i class="fas fa-lightbulb"></i> Innovación constante</li>
+                        <li><i class="fas fa-hand-holding-heart"></i> Compromiso ético</li>
+                        <li><i class="fas fa-users"></i> Trabajo en equipo</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nuestro Equipo -->
+    <section class="about-team">
+        <div class="container">
+            <h2>Conoce a Nuestro Equipo</h2>
+            <p class="team-subtitle">Profesionales altamente capacitados y apasionados por el bienestar animal</p>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="imagenes/Carlos_Mendez.jpg" alt="Dr. Carlos Méndez">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Carlos Méndez</h3>
+                        <span class="member-title">Fundador y Director Médico</span>
+                        <p>Médico Veterinario Zootecnista con especialidad en cirugía y más de 15 años de experiencia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="imagenes/Laura_Gomez.jpg" alt="Dra. Laura Gómez">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dra. Laura Gómez</h3>
+                        <span class="member-title">Veterinaria de Diagnóstico por Imágenes</span>
+                        <p>Especialista en radiología y ultrasonografía con maestría en diagnóstico veterinario.</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="imagenes/Javier_Rodriguez.jpg" alt="Dr. Javier Rodríguez">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dr. Javier Rodríguez</h3>
+                        <span class="member-title">Especialista en Medicina Interna</span>
+                        <p>Experto en enfermedades complejas y tratamientos innovadores para mascotas.</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="imagenes/Ana_Martinez.jpg" alt="Dra. Ana Martínez">
+                        <div class="member-social">
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3>Dra. Ana Martínez</h3>
+                        <span class="member-title">Veterinaria de Emergencias</span>
+                        <p>Especialista en cuidados intensivos y medicina de urgencias veterinarias.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="support-team">
+                <h3>Equipo de Apoyo</h3>
+                <p>Nuestro equipo se completa con enfermeras veterinarias certificadas, asistentes de cuidado animal,
+                    recepcionistas atentas y especialistas en tecnología que trabajan juntos para ofrecer la mejor
+                    experiencia para ti y tu mascota.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instalaciones -->
+    <section class="about-facilities">
+        <div class="container">
+            <h2>Nuestras Instalaciones</h2>
+            <p class="facilities-subtitle">Espacios diseñados para el confort y la seguridad de tus mascotas</p>
+
+            <div class="facilities-gallery">
+                <div class="gallery-item">
+                    <img src="imagenes/Sala_espera.jpg" alt="Sala de espera">
+                    <div class="gallery-caption">Sala de espera con zona para mascotas</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/Consultorio_veterinaria.jpeg" alt="Consultorio">
+                    <div class="gallery-caption">Consultorios equipados</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/Quirofano_veterinario.webp" alt="Quirófano">
+                    <div class="gallery-caption">Quirófanos con tecnología de punta</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/Sala_hospitalizacion.jpg" alt="Área de hospitalización">
+                    <div class="gallery-caption">Áreas de hospitalización</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/Laboratorio_veterinaria.jpg" alt="Laboratorio">
+                    <div class="gallery-caption">Laboratorio clínico</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagenes/Sala_Estetica.jpg" alt="Sala de estética">
+                    <div class="gallery-caption">Sala de estética canina</div>
+                </div>
+            </div>
+
+            <div class="technology-section">
+                <h3>Tecnología de Vanguardia</h3>
+                <div class="technology-content">
+                    <div class="technology-text">
+                        <p>En VetScanIA hemos invertido en equipamiento de última generación para ofrecer diagnósticos
+                            más precisos y tratamientos más efectivos:</p>
+                        <ul class="technology-list">
+                            <li><i class="fas fa-check-circle"></i> Equipo de rayos X digital</li>
+                            <li><i class="fas fa-check-circle"></i> Ecógrafo de alta resolución</li>
+                            <li><i class="fas fa-check-circle"></i> Laboratorio clínico completo</li>
+                            <li><i class="fas fa-check-circle"></i> Monitorización anestésica avanzada</li>
+                            <li><i class="fas fa-check-circle"></i> Sistema de historiales médicos digitales</li>
+                            <li><i class="fas fa-check-circle"></i> Plataforma de telemedicina veterinaria</li>
+                        </ul>
+                    </div>
+                    <div class="technology-image">
+                        <img src="imagenes/tecnologia_veterinaria.webp" alt="Tecnología veterinaria">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="about-testimonials">
+        <div class="container">
+            <h2>Lo que dicen nuestros clientes</h2>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"El Dr. Méndez operó a mi perro de una fractura compleja y el resultado fue increíble. Todo
+                            el equipo fue muy profesional y cariñoso con Max."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="imagenes/Ricardo_Torres.jpeg" alt="Cliente 1">
+                        <div>
+                            <h4>Ricardo Torres</h4>
+                            <span>Dueño de Max (Golden Retriever)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"La Dra. Gómez diagnosticó a tiempo una condición en mi gata que otros veterinarios no
+                            detectaron. Estoy eternamente agradecida."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="imagenes/Mariana_Sanchez.jpeg" alt="Cliente 2">
+                        <div>
+                            <h4>Mariana Sánchez</h4>
+                            <span>Dueña de Luna (Gata siamesa)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>"El sistema de recordatorios de vacunas me ha salvado de varios dolores de cabeza. Muy
+                            profesional todo el servicio."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="imagenes/Carlos_Jimenez.jpeg" alt="Cliente 3">
+                        <div>
+                            <h4>Carlos Jiménez</h4>
+                            <span>Dueño de 3 perros rescatados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="about-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¿Listo para conocer nuestra clínica?</h2>
+                <p>Agenda una visita o conoce más sobre nuestros servicios</p>
+                <div class="cta-buttons">
+                    <a href="Agendar.html" class="btn primary">Agendar cita</a>
+                    <a href="Servicios.html" class="btn secondary">Ver servicios</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column logo-column">
+                    <img src="imagenes/logoVetScanAi.png" alt="VetScanIa Logo" class="footer-logo">
+                    <p>Cuidando a tus mascotas con tecnología y amor</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="Servicios.html#vacunacion">Vacunación</a></li>
+                        <li><a href="Servicios.html#consulta">Consulta General</a></li>
+                        <li><a href="Servicios.html#emergencias">Urgencias 24h</a></li>
+                        <li><a href="Servicios.html#cirugia">Cirugía</a></li>
+                        <li><a href="Servicios.html#estetica">Estética Canina</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Enlaces útiles</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/Pets/comments/1dd77u4/vet_advice/?tl=es-419"
+                                target="_blank">Blog</a></li>
+                        <li><a href="preguntas-frecuentes.html">Preguntas Frecuentes</a></li>
+                        <li><a href="Politica.html">Política de Privacidad</a></li>
+                        <li><a href="Terminos-Condiciones.html">Términos y Condiciones</a></li>
+                        <li><a href="trabaja-con-nosotros.html">Trabaja con Nosotros</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Veterinaria 123, Ciudad</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> info@VetScanIa.com</li>
+                        <li><i class="fas fa-clock"></i> Lunes-Viernes: 9am - 8pm<br>Sábado: 9am - 2pm</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 VetScanIa Veterinaria Digital. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot/IA -->
+    <div class="chatbot-container" id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <img src="imagenes/Assistant.png" alt="Asistente Virtual">
+                <h3>Asistente Virtual VetScanIa</h3>
+            </div>
+            <button class="close-chat" id="close-chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot-message">
+                <p>¡Hola! Soy el asistente virtual de VetScanIa. ¿En qué puedo ayudarte hoy con tu mascota?</p>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta aquí...">
+            <button id="send-message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-suggestions">
+            <p>Preguntas frecuentes:</p>
+            <div class="suggestion-buttons">
+                <button class="suggestion-btn">¿Quiénes son los veterinarios?</button>
+                <button class="suggestion-btn">Horario de atención</button>
+                <button class="suggestion-btn">Servicios especializados</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón flotante del chatbot -->
+    <button class="chatbot-button" id="chatbot-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>Asistente Virtual</span>
+    </button>
+
+    <!-- Scripts -->
+
+    <script src="script/buttoninvisible.js"></script>
+
+    <!-- Carga Firebase -->
+    <script type="module" src="script/firebase-init.js"></script>
+
+    <!-- Tu script del chatbot -->
+    <script type="module" src="script/chatbot.js"></script>
+
+</body>
+
+</html>
